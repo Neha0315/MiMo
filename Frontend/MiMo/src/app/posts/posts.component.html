@@ -1,5 +1,16 @@
+<header>
+    <div>
+        <img class="logo" src="/assets/logo.png" alt="logo" aria-hidden="true">
+        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+    </div>
+    <div class="nav">
+      <button class="posts-button" routerLink="/posts">Posts</button>
+    </div>
+  </header>
+  
+
 <section>
-    <p>posts works!</p>
-    <app-listing *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+    <h1 class="page-title">Posts</h1>
+    <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
 </section>
 

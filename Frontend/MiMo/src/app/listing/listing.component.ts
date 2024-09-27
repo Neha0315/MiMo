@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ListingInfo } from '../listing-info';
+import { ListingInfo } from '../main/listing-info';
 
 @Component({
   selector: 'app-listing',
