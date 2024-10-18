@@ -49,6 +49,20 @@ header {
     top: 25px; /* Moves it up to overlap the header */
     left: 150px; /* Adjust to position it slightly inside */
   }
+
+  .nav .profile-button {
+    background-color: #034F30; /* Dark teal button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 25px; /* Matches the posts button */
+    left: 300px; /* Adjust positioning to the right of the posts button */
+}
+
   
   .nav .posts-button:hover {
     background-color: #a70968; /* slightly darker green on hover */
