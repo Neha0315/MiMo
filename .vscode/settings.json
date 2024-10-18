@@ -1,0 +1,29 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MSSQL",
+            "connectString": "Driver={ODBC Driver 18 for SQL Server};Server=tcp:mimocwru.database.windows.net,1433;Database=MiMoDB;Uid=jakob;Pwd=8zoo&jex@TCd8DHN;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;",
+            "name": "Connect1"
+        },
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MSSQL",
+            "name": "Connect2",
+            "username": "jakob",
+            "connectString": "Driver={ODBC Driver 18 for SQL Server};Server=tcp:mimocwru.database.windows.net,1433;Database=MiMoDB;Uid=jakob;Pwd=8zoo&jex@TCd8DHN;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+        }
+    ]
+}
