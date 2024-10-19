@@ -20,4 +20,5 @@ describe('PostsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

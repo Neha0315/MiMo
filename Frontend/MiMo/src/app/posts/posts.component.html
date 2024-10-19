@@ -1,7 +1,10 @@
 <header>
     <div>
-        <img class="logo" src="/assets/logo.png" alt="logo" aria-hidden="true">
-        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+      <button class="logo-button" routerlink="/main" aria-label="Logo Button">
+        <img class="logo" src="/assets/logo.png" alt="logo">
+      </button>
+  
+      <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
     </div>
     <div class="nav">
       <button class="posts-button" routerLink="/posts">Posts</button>
@@ -11,6 +14,8 @@
 
 <section>
     <h1 class="page-title">Posts</h1>
-    <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+    <div class="posts-container">
+      <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+    </div>
 </section>
 

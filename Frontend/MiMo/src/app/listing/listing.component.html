@@ -1,4 +1,10 @@
 <section class="listing">
     <img class="listing-photo" src="{{ listingInfo.photo }}">
-    <p class="listing-location">{{ listingInfo.location }}</p>
+    <h1 class="listing-title">{{ listingInfo.title }}</h1>    
+    <div class="location-price-container">
+        <p class="listing-location">{{ listingInfo.location }}</p>
+        <div class="priceCheck-container">
+            <img class="listing-priceCheck" src="assets\goodPrice.png">
+        </div>
+    </div>
 </section>

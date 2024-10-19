@@ -1,0 +1,67 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: #F4A7B9; /* light background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333; /* darker text color */
+  }
+  
+  .logo {
+    box-shadow: none;
+    outline: none;
+    /* width: 100px; Adjust size */
+    height: 90px; /*Adjust size */
+    border-radius: 50%; /* Makes the image circular */
+    border: 2px solid black; /* Optional: Adds a white border around the circle */
+    position: absolute;
+    top:10px; /* Moves it up to overlap the header */
+    left: 10px; /* Adjust to position it slightly inside */
+    z-index: 10; /* Makes sure it stays on top of the header */
+    }
+
+  .profile-pic {
+    width:70px;
+    /* height:50px; */
+    border-radius:50%;
+    border:2px solid black;
+    position:absolute;
+    top:20px;
+    right: 10px;
+    z-index: 10;
+  }
+  
+  .nav .posts-button {
+    background-color: #4F0330; /* green button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 25px; /* Moves it up to overlap the header */
+    left: 150px; /* Adjust to position it slightly inside */
+  }
+  
+  .nav .posts-button:hover {
+    background-color: #a70968; /* slightly darker green on hover */
+  }
+
+  .logo-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .nav .posts-button:hover {
+    background-color: #a70968; /* slightly darker green on hover */
+  }
+

@@ -1,4 +1,6 @@
 export interface ListingInfo {
-    location: string;
     photo: string;
+    location: string;
+    title: string;
+    price: number;
 }

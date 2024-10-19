@@ -14,10 +14,36 @@ import { CommonModule } from '@angular/common';
 export class PostsComponent {
   listingInfoList: ListingInfo[] = [
     {"location": "Cleveland", 
-      "photo": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+      "photo": "assets/Apt1.png",
+      "title": "Apartment 1",
+      "price": 600,
     },
-    {"location": "not Cleveland",
-      "photo": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-    }
+    {"location": "Cleveland",
+      "photo": "assets/Apt2.png",
+      "title": "Apartment 2",
+      "price": 1000,
+    },
+    {"location": "Cleveland",
+      "photo": "assets/Apt3.png",
+      "title": "Apartment 3",
+      "price": 800,
+    },
+    {"location": "Cleveland",
+      "photo": "assets/Apt4.png",
+      "title": "Apartment 4",
+      "price": 1200,
+    },
+    {"location": "Cleveland",
+      "photo": "assets/Apt5.png",
+      "title": "Apartment 5",
+      "price": 900,
+    },
+    {"location": "Cleveland",
+      "photo": "assets/Apt6.jpg",
+      "title": "Apartment 6",
+      "price": 2500,
+    },
   ];
+  isGoodPrice: boolean = true;
+  isBadPrice: boolean = false;
 }
