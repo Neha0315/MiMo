@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ListingComponent } from '../listing/listing.component';
 import { ListingInfo } from '../main/listing-info';
 import { CommonModule } from '@angular/common';
@@ -46,4 +47,13 @@ export class PostsComponent {
   ];
   isGoodPrice: boolean = true;
   isBadPrice: boolean = false;
+
+  constructor(private router: Router) { }
+
+  navigateToProfilePage() {
+    this.router.navigate(['/profile-page']);
+  }
 }
+
+
+
