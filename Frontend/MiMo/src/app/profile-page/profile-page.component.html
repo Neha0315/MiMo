@@ -3,7 +3,7 @@
     <div class="profile-header">
       <img src="assets/profile-pic.png" alt="Profile Picture" class="profile-pic">
       <div class="profile-info">
-        <h2>Full Name: Neha Panduri</h2>
+        <h2>Name: Neha Panduri</h2>
         <p>Email: nxp330case.edu</p>
         <p>Phone Number: (732) 371-1202</p>
       </div>
@@ -22,12 +22,16 @@
       </div>
       <div class="watchlist">
         <h3>Watchlist</h3>
-        <ul>
-          <!-- Placeholder items for the watchlist -->
-          <li>Item A</li>
-          <li>Item B</li>
-          <li>Item C</li>
-        </ul>
+        <div *ngFor="let item of watchlistItems">
+          <!-- Display your watchlist items here -->
+          <div class="watchlist-item">
+            <img [src]="item.photo" alt="listing photo" class="listing-img">
+            <div class="watchlist-details">
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.location }}</p>
+            </div>
+          </div>          
+        </div>
       </div>
     </div>
   </div>

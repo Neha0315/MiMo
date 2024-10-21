@@ -2,8 +2,9 @@
 <main>
   <header>
     <div>
-  
-      <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+      <button class="profile-button" (click)="navigateToProfilePage()">
+        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+        </button>
     
     </div>
 
@@ -13,7 +14,7 @@
       </button>
 
       <button class="posts-button" (click)="navigateToPosts()">Posts</button>
-      <button class="profile-button" (click)="navigateToProfilePage()">Profile Page</button>
+      
     </div>
 
   </header>
