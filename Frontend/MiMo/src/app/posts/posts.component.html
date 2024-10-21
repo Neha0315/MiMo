@@ -1,2 +1,9 @@
-<p>Welcome to Posts!</p>
+  
+
+<section>
+    <!-- <h1 class="page-title">Posts</h1> -->
+    <div class="posts-container">
+      <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+    </div>
+</section>
 
