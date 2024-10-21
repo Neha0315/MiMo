@@ -1,1 +1,7 @@
-<p>post-details works!</p>
+<div class="listing-details" *ngIf="listing">
+    <h2>{{ listing.title }}</h2>
+    <img [src]="listing.photo" alt="Photo of {{ listing.title }}" class="listing-photo">
+    <p><strong>Location:</strong> {{ listing.location }}</p>
+    <p><strong>Price:</strong> ${{ listing.price }}</p>
+  </div>
+  

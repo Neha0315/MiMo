@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListingComponent } from '../listing/listing.component';
+import { PostDetailsComponent } from '../post-details/post-details.component';
 import { ListingInfo } from '../main/listing-info';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [ListingComponent, CommonModule],
+  imports: [PostDetailsComponent, CommonModule],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
@@ -52,6 +52,11 @@ export class PostsComponent {
 
   navigateToProfilePage() {
     this.router.navigate(['/profile-page']);
+  }
+
+  navigateToPostDetails(index: number) {
+    // Navigate to listing details page with the index as an ID parameter
+    this.router.navigate(['/post-details', index]);
   }
 }
 
