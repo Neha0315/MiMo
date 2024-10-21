@@ -1,5 +1,6 @@
 .profile-page {
     margin: 20px;
+    padding-top: 80px;
   }
   
   .profile-header {
@@ -23,7 +24,7 @@
     display: flex;
     justify-content: space-between;
   }
-  
+
   .listing, .watchlist {
     width: 45%;
   }

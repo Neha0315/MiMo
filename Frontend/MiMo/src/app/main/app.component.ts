@@ -16,13 +16,24 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 export class AppComponent 
 {
   title = 'MiMo';
-}
 
-export class MainPageComponent {
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+  }
 
   navigateToProfilePage() {
     this.router.navigate(['/profile-page']);
   }
+
+  navigateToPosts() {
+    this.router.navigate(['/posts']);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+
+}
+
+export class MainPageComponent {
+
 }

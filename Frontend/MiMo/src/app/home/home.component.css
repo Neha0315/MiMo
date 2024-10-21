@@ -1,0 +1,21 @@
+
+.content {
+    display: flex;
+    justify-content: center;
+    padding-top: 0px;
+    align-items: center;
+    /* height: 100vh; */
+  
+    .about{
+      background-color: #F4A7B9;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin: 30px;
+    }
+    
+  .welcome-img {
+      height: 80vh;
+    }
+}  
