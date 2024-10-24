@@ -19,6 +19,10 @@ async def get_post(post_id) -> dict[str, object]:
 async def posts(number_of_posts) -> list[dict[str, object]]:
     return db.query_posts(number_of_posts)
 
+@app.post('/post')
+async def post(post: Posts_Model) -> dict[str, object]:
+   add_post = db.add_post(post)
+   return{"success": "post added"}
 
 
 

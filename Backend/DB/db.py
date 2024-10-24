@@ -59,5 +59,16 @@ class db_helper:
         response = self.cursor.fetchall()
         return response
 
+    def add_post(self, post):
+        if post.shared:
+            s = 1
+        else:
+            s = 0
+
+        query = "INSERT INTO Posts (poster_id, about, bedroom, bathroom, shared, addr, listed_price) VALUES (" + str(post.poster_id) + ", '" + post.about + "', " + str(post.bedroom) + ", " + str(post.bathroom) + ", " + str(s) + ", '" + post.addr + "', " + str(post.listed_price) + ");"
+        self.cursor.execute(query)
+        self.connection.commit()
+        return {"success": "post added"}
+
 # db = db_helper()
 # print(db.get_post(1))
