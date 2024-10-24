@@ -2,13 +2,13 @@
 <main>
   <header>
     <div>
-      <button class="profile-button" (click)="navigateToProfilePage()">
-        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
-        </button>
-    
     </div>
 
     <div class="nav">
+      <button class="profile-button" (click)="navigateToProfilePage()">
+        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+      </button>
+
       <button class="logo-button" (click)="navigateToHome()">
         <img class="logo" src="/assets/logo.png" alt="logo">
       </button>
@@ -19,7 +19,3 @@
 
   </header>
   <router-outlet></router-outlet>
-
-
-
-<!-- <router-outlet /> -->
