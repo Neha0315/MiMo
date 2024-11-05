@@ -1,7 +1,7 @@
 CREATE TABLE Accounts (
     account_id int IDENTITY(1,1) PRIMARY KEY,
     email varchar(255) NOT NULL,
-    first_name varchar(64) NOT NULL,
+    first_name varchar(64) NOT NULL,    
     last_name varchar(64),
     username VARCHAR(64) NOT NULL,
     pw VARCHAR(64) NOT NULL,

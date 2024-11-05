@@ -11,3 +11,13 @@ def get_profile(conn, profile_id):
                 "username": row[4]}
     except:
         return {"error": "profile not found"}
+
+def create_profile(conn, profile):
+    cursor = conn.cursor()
+    query = "INSERT INTO Accounts (email, first_name, last_name, username, pw, creation_date) VALUES (?, ?, ?, ?, ?,  GETDATE());"
+    try:
+        cursor.execute(query, profile.email, profile.first_name, profile.last_name, profile.username, profile.pw)
+        conn.commit()
+        return {"success": "profile created"}
+    except:
+        return {"error": "profile not created"}
