@@ -7,16 +7,17 @@ class db_helper:
     def __init__(self):
         load_dotenv()
         connection_str = os.environ['connection_string']
-        self.connection = pyodbc.connect(connection_str)
-        self.cursor = self.connection.cursor()
+        self.conn = pyodbc.connect(connection_str)
+        self.cursor = self.conn.cursor()
 
     def get_post(self, post_id):
-        if not str(post_id).isnumeric():
-            return {"error": "post_id must be an integer"}
-        query = "SELECT * FROM Posts WHERE post_id = " + str(post_id) + ";"
-        response = self.query(query)
+        cursor = self.conn.cursor()
+        query = "SELECT * FROM Posts WHERE post_id = ?"
+        cursor.execute(query, post_id)
+        response = cursor.fetchall()
         if len(response) == 0:
-            return {"error": "no post found"}
+            return {"error": "post_id not found"}
+
         return_me = {
             "post_id": response[0][0],
             "poster_id": response[0][1],
@@ -58,6 +59,21 @@ class db_helper:
         self.cursor.execute(query)
         response = self.cursor.fetchall()
         return response
+
+    def add_post(self, post):
+        if post.shared:
+            s = 1
+        else:
+            s = 0
+        try:
+            query = "INSERT INTO Posts (poster_id, about, bedroom, bathroom, shared, addr, listed_price) VALUES (" + str(post.poster_id) + ", '" + post.about + "', " + str(post.bedroom) + ", " + str(post.bathroom) + ", " + str(s) + ", '" + post.addr + "', " + str(post.listed_price) + ");"
+            self.cursor.execute(query)
+            self.conn.commit()
+            print(self.cursor.fetchall())
+            return {"success": "post added"}
+        except:
+            return {"error": "post not added"}
+
 
 # db = db_helper()
 # print(db.get_post(1))
