@@ -5,9 +5,12 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 
 from DB.db import db_helper
+from Models.Profile_Model import Profile_Model
+
 from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from posts import get_post, query_posts, add_post, modify_post
+from profiles import get_profile, create_profile
 
 app = FastAPI()
 load_dotenv()
@@ -36,7 +39,13 @@ async def mdify_post(post: Posts_Update_Model) -> dict[str, object]:
     print("here")
     return modify_post(conn, post)
 
+@app.get('/profile/{user_id}')
+async def get_prfle(user_id) -> dict[str, object]:
+    return get_profile(conn, user_id)
 
+@app.post('/profile')
+async def make_profile(profile: Profile_Model) -> dict[str, object]:
+    return create_profile(conn, profile)
 
 
 
