@@ -8,6 +8,7 @@ from DB.db import db_helper
 from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from posts import get_post, query_posts, add_post, modify_post
+from profiles import get_profile
 
 app = FastAPI()
 load_dotenv()
@@ -36,7 +37,9 @@ async def mdify_post(post: Posts_Update_Model) -> dict[str, object]:
     print("here")
     return modify_post(conn, post)
 
-
+@app.get('/profile/{user_id}')
+async def profile(user_id) -> dict[str, object]:
+    return get_profile(conn, user_id)
 
 
 
