@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ListingComponent } from '../listing/listing.component';
 import { ListingInfo } from '../main/listing-info';
 import { CommonModule } from '@angular/common';
+import { OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+
 
 
 @Component({
@@ -54,6 +57,36 @@ export class PostsComponent {
     this.router.navigate(['/profile-page']);
   }
 }
+
+//need to replace the first post component with this one
+
+export class PostsComponent2 implements OnInit 
+{
+  posts: any[] = [];
+  loading = true;
+  error: string | null = null;
+
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit(): void {
+    this.loadPosts();
+  }
+
+  private loadPosts(): void {
+    this.apiService.getPosts(10).subscribe({
+      next: (data) => {
+        this.posts = data;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = 'Error loading posts. Please try again later.';
+        this.loading = false;
+        console.error('Error fetching posts:', error);
+      }
+    });
+  }
+}
+
 
 
 

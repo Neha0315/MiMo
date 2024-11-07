@@ -3,12 +3,16 @@ import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { PostsComponent } from '../posts/posts.component';
 import { ListingComponent } from '../listing/listing.component';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common'; 
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PostsComponent, ListingComponent, CommonModule],
+  imports: [RouterOutlet, PostsComponent, ListingComponent, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

@@ -3,6 +3,7 @@ import os
 import pyodbc
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from DB.db import db_helper
 from Models.Message_Model import Message_Model
@@ -19,7 +20,16 @@ load_dotenv()
 connection_str = os.environ['connection_string']
 conn = pyodbc.connect(connection_str)
 
-@app.get('/')
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  #the frontend url will go here
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get('/test')
 async def index() -> dict[str, str]:
     return {'hello': 'world'}
 
@@ -60,6 +70,10 @@ async def get_messages(user_id):
 @app.post('/messages')
 async def send_message(msg: Message_Model) -> dict[str, object]:
     return send_msg(conn, msg)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
+
 
 
 
