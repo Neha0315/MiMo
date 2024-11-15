@@ -28,7 +28,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get('/test')
 async def index() -> dict[str, str]:
     return {'hello': 'world'}
@@ -44,7 +43,6 @@ async def posts(number_of_posts) -> list[dict[str, object]]:
 @app.post('/post')
 async def post(post: Posts_Model) -> dict[str, object]:
    return add_post(conn, post)
-
 
 @app.post('/post/modify')
 async def mdify_post(post: Posts_Update_Model) -> dict[str, object]:

@@ -28,7 +28,7 @@ export class AppComponent
   constructor(
     private router: Router,
     private apiService: ApiService  // Inject ApiService
-  ) { }
+  ) {}
 
   navigateToProfilePage() {
     this.router.navigate(['/profile-page']);
@@ -42,8 +42,45 @@ export class AppComponent
     this.router.navigate(['/home']);
   }
 
+  fetchData()
+  {
+    fetch("http://localhost:8000/data")
+      .then((response: Response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: unknown) => {
+        console.log(data);
+      })
+      .catch((error: Error) => {
+        console.error('Error:', error.message);
+      });
+
+  }
+
+  fetchData2(): void {
+    this.loading = true;
+    this.error = null;
+
+    this.apiService.getProfile('nxp330') // Use ApiService
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.loading = false;
+        },
+        error: (error) => {
+          this.error = 'Failed to fetch data: ' + error.message;
+          this.loading = false;
+          console.error('Error fetching data:', error);
+        }
+      });
+  }
+
   fetchPosts() 
   {
+    console.log("fetch button works");
     this.loading = true;
     this.error = null;
     
@@ -51,6 +88,7 @@ export class AppComponent
       next: (data) => {
         this.posts = data;
         this.loading = false;
+        console.log(data);
       },
       error: (error) => {
         this.error = 'Failed to fetch posts: ' + error.message;
@@ -60,8 +98,12 @@ export class AppComponent
     });
   }
 
-}
-
-export class MainPageComponent {
 
 }
+
+export class MainPageComponent 
+{
+
+}
+
+

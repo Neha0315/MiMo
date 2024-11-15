@@ -83,6 +83,7 @@ export class PostsComponent implements OnInit
       next: (data) => {
         this.posts = data;
         this.loading = false;
+        console.log("Data" + data);
       },
       error: (error) => {
         this.error = 'Error loading posts. Please try again later.';
@@ -94,8 +95,7 @@ export class PostsComponent implements OnInit
 
   }
 
-  listingInfoList = this.posts;
-  
+  listingInfoList = this.posts; 
 }
 
 

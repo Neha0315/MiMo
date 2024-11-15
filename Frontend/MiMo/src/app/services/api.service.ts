@@ -11,7 +11,7 @@ export class ApiService
 {
   
   //this is the url for the backend main.py(must add the ip address if hosted on a different device) 
-  private apiUrl = 'http://localhost:8000';  
+  private apiUrl = 'http://127.0.0.1:8000';  
 
   constructor(private http: HttpClient) { }
 
