@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
-
-
 @Component({
   selector: 'app-posts',
   standalone: true,
@@ -15,7 +13,11 @@ import { ApiService } from '../services/api.service';
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css'
 })
-export class PostsComponent {
+
+/*
+//this is first data
+export class PostsComponent 
+{
   listingInfoList: ListingInfo[] = [
     {"location": "Cleveland", 
       "photo": "assets/Apt1.png",
@@ -46,8 +48,9 @@ export class PostsComponent {
       "photo": "assets/Apt6.jpg",
       "title": "Apartment 6",
       "price": 2500,
-    },
+    }, 
   ];
+  
   isGoodPrice: boolean = true;
   isBadPrice: boolean = false;
 
@@ -57,10 +60,11 @@ export class PostsComponent {
     this.router.navigate(['/profile-page']);
   }
 }
+*/
 
 //need to replace the first post component with this one
-
-export class PostsComponent2 implements OnInit 
+//this is from database posts
+export class PostsComponent implements OnInit 
 {
   posts: any[] = [];
   loading = true;
@@ -68,11 +72,13 @@ export class PostsComponent2 implements OnInit
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.loadPosts();
   }
 
-  private loadPosts(): void {
+  private loadPosts(): void 
+  {
     this.apiService.getPosts(10).subscribe({
       next: (data) => {
         this.posts = data;
@@ -83,9 +89,16 @@ export class PostsComponent2 implements OnInit
         this.loading = false;
         console.error('Error fetching posts:', error);
       }
+        
     });
+
   }
+
+  listingInfoList = this.posts;
+  
 }
+
+
 
 
 
