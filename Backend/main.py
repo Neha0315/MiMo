@@ -1,7 +1,5 @@
 import os
-
-import pyodbc
-from dotenv import load_dotenv
+import sqlite3
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,16 +14,14 @@ from posts import get_post, query_posts, add_post, modify_post
 from profiles import get_profile, create_profile
 
 app = FastAPI()
-load_dotenv()
-connection_str = os.environ['connection_string']
-conn = pyodbc.connect(connection_str)
+conn = sqlite3.connect('SQLite/MiMo.db')
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  #the frontend url will go here
+    allow_origins=["http://localhost:4200"],  # Replace with the origin of your Angular app
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
 )
 
 @app.get('/test')
@@ -57,13 +53,13 @@ async def get_prfle(user_id) -> dict[str, object]:
 async def make_profile(profile: Profile_Model) -> dict[str, object]:
     return create_profile(conn, profile)
 
-@app.get('/messages/{user_id}')
-async def get_messages(user_id):
-    return get_msg(conn, user_id)
+# @app.get('/messages/{user_id}')
+# async def get_messages(user_id):
+#     return get_msg(conn, user_id)
 
 @app.get('/messages/{reciever_id}/{sender_id}')
-async def get_messages(user_id):
-    return get_msg(conn, user_id)
+async def get_messages(reciever_id, sender_id):
+    return get_msg(conn, reciever_id, sender_id)
 
 @app.post('/messages')
 async def send_message(msg: Message_Model) -> dict[str, object]:

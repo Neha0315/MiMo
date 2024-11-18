@@ -14,9 +14,9 @@ def get_profile(conn, profile_id):
 
 def create_profile(conn, profile):
     cursor = conn.cursor()
-    query = "INSERT INTO Accounts (email, first_name, last_name, username, pw, creation_date) VALUES (?, ?, ?, ?, ?,  GETDATE());"
+    query = "INSERT INTO Accounts (email, first_name, last_name, username, pw, creation_date) VALUES (?, ?, ?, ?, ?, date('now'));"
     try:
-        cursor.execute(query, profile.email, profile.first_name, profile.last_name, profile.username, profile.pw)
+        cursor.execute(query, (profile.email, profile.first_name, profile.last_name, profile.username, profile.pw))
         conn.commit()
         return {"success": "profile created"}
     except:
