@@ -16,7 +16,9 @@ export class ListingComponent implements OnInit {
   constructor(private watchlistService: WatchlistService) {}
 
   ngOnInit(): void {  // Make sure to include the return type
+    console.log("new listing")
     this.isInWatchlist = this.watchlistService.isInWatchlist(this.listingInfo);
+    console.log(this.listingInfo);
   }
 
   toggleWatchlist() {

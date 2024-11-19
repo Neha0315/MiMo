@@ -26,11 +26,8 @@ def get_post(conn, post_id):
 
 
 def query_posts(conn, number_of_posts):
-    cursor = conn.cursor()
-    if not str(number_of_posts).isnumeric():
-        return {"error": "post_id must be an integer"}
-    query = "SELECT * FROM Posts ORDER BY post_date DESC LIMIT ?;"
-    responses = cursor.execute(query, number_of_posts).fetchall()
+    query = "SELECT * FROM Posts ORDER BY post_date DESC LIMIT ?"
+    responses = conn.execute(query, (number_of_posts,)).fetchall()
     return_me = []
     for response in responses:
         return_me.append({
