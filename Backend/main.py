@@ -3,7 +3,6 @@ import sqlite3
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from DB.db import db_helper
 from Models.Message_Model import Message_Model
 from Models.Profile_Model import Profile_Model
 
