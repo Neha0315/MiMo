@@ -1,9 +1,9 @@
-  
-
 <section>
-    <!-- <h1 class="page-title">Posts</h1> -->
-    <div class="posts-container">
-      <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
-    </div>
+  <!-- <h1 class="page-title">Posts</h1> -->
+   
+  <div class="posts-container">
+    <a *ngFor="let listingInfo of listingInfoList" [routerLink]="['/post', listingInfo.post_id]" class="post-link">
+      <app-listing class="post" [listingInfo]="listingInfo"></app-listing>
+    </a>
+  </div>
 </section>
-
