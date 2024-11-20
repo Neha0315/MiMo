@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-post-page',
@@ -10,15 +11,47 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PostPageComponent implements OnInit {
   postId: string = '';
-
-  constructor(private route: ActivatedRoute) {}
+  post: any = {};
+  loading = true;
+  error: string | null = null;
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       if(params.has('post_id')) {
         this.postId = params.get('post_id')!;
+        console.log(this.postId);
       }
-      // You can now use this.postId to fetch post details
+
+      this.loadPost(this.postId);
+
+
     });
   }
+
+
+  private loadPost(postId: string): void 
+  {
+    this.apiService.getPost(postId).subscribe({
+      next: (data) => {
+        this.post = data;
+        this.loading = false;
+        console.log(data);
+      },
+      error: (error) => {
+        this.error = 'Error loading posts. Please try again later.';
+        this.loading = false;
+        console.error('Error fetching posts:', error);
+      }
+        
+    });
+
+  }
+
+
+
+
+
+
+
 }

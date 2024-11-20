@@ -1,17 +1,17 @@
 <div class="product-listing">
     <div class="product-item">
       <div class="product-header">
-        <span class="product-title">Product Title</span>
-        <span class="product-price">$100</span>
+        <span class="product-title">{{post.title}}</span>
+        <span class="product-price">${{post.listed_price}}</span>
       </div>
       <div class="product-address">
-        <span>123 Main St, Springfield, USA</span>
+        <span>{{post.addr}}</span>
       </div>
       <div class="product-image">
         <img src="https://thumbs.dreamstime.com/b/apartment-building-19532951.jpg" alt="Product Image">
       </div>
       <div class="product-description">
-        <p>This is a description of the product. It provides details about the product.</p>
+        <p>{{post.about}}</p>
       </div>
     </div>
     <!-- Repeat .product-item for more listings -->

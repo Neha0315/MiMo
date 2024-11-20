@@ -5,11 +5,6 @@ import { ListingInfo } from '../main/listing-info';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-
-import { NgModule } from '@angular/core';
-
-import { BrowserModule } from '@angular/platform-browser';
-
 import { RouterModule } from '@angular/router';
 
 
