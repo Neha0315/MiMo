@@ -7,6 +7,7 @@ import {HomeComponent} from '../home/home.component';
 import { PostPageComponent } from '../post-page/post-page.component';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from '../login/login.component';
 
 export const routes: Routes = [  
     { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route to Home page
@@ -15,6 +16,7 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },  // Route for Profile page
     { path: 'post/:post_id', component: PostPageComponent },  // Route for Post Details page
     { path: 'add-post', component: CreatePostComponent },  // Route for Add Post page
+    { path: 'login', component: LoginComponent },
     // { path: '**', redirectTo: '/posts' }  // Wildcard to handle invalid routes
   ];
   

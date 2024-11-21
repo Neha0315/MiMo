@@ -46,7 +46,10 @@ export class AppComponent
     this.router.navigate(['/home']);
   }
 
-  
+  navigateToLogin()
+  {
+    this.router.navigate(['/login']);
+  }
 
 
 }

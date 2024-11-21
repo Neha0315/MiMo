@@ -1,38 +1,41 @@
 <div class="profile-page">
-    <!-- Profile Picture and Info -->
-    <div class="profile-header">
-      <img src="assets/profile-pic.png" alt="Profile Picture" class="profile-pic">
-      <div class="profile-info">
-        <h2>Name: Neha Panduri</h2>
-        <p>Email: nxp330case.edu</p>
-        <p>Phone Number: (732) 371-1202</p>
-      </div>
+  <!-- Profile Picture and Info -->
+  <div class="profile-header">
+    <img src="assets/profile-pic.png" alt="Profile Picture" class="profile-pic">
+      <div *ngIf="loading">Loading profile...</div>
+      <div *ngIf="error">{{ error }}</div>
+      <div *ngIf="!loading && !error">
+      <h1>Welcome, {{profile.first_name }} {{ profile.last_name }}</h1>
+      <p>Email: {{profile.email }}</p>
+      <p>Username: {{ profile.username }}</p>
+      <p>Account Created: {{ profile.creation_date }}</p>
+  </div>
+  </div>
+
+  <!-- Listings and Watchlist -->
+  <div class="lists-container">
+    <!-- User's Listings -->
+    <div class="listing">
+      <h3>Your Listings</h3>
+      <ul>
+        <li *ngFor="let item of profile.listings">
+          {{ item.title }} - {{ item.location }}
+        </li>
+      </ul>
     </div>
-  
-    <!-- Listings and Watchlist -->
-    <div class="lists-container">
-      <div class="listing">
-        <h3>Listing</h3>
-        <ul>
-          <!-- Placeholder items for the listing -->
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-        </ul>
-      </div>
-      <div class="watchlist">
-        <h3>Watchlist</h3>
-        <div *ngFor="let item of watchlistItems">
-          <!-- Display your watchlist items here -->
-          <div class="watchlist-item">
-            <img [src]="item.photo" alt="listing photo" class="listing-img">
-            <div class="watchlist-details">
-              <h4>{{ item.title }}</h4>
-              <p>{{ item.location }}</p>
-            </div>
-          </div>          
+
+    <!-- User's Watchlist -->
+    <div class="watchlist">
+      <h3>Your Watchlist</h3>
+      <div *ngFor="let item of watchlistItems">
+        <div class="watchlist-item">
+          <img [src]="item.photo" alt="listing photo" class="listing-img">
+          <div class="watchlist-details">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.location }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -17,7 +17,7 @@ conn = sqlite3.connect('SQLite/MiMo.db')
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Replace with the origin of your Angular app
+    allow_origins=["http://localhost:4200", "http://localhost:65366"],  # Replace with the origin of your Angular app
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
