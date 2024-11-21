@@ -68,6 +68,18 @@ header {
 
   }
 
+  .nav .add-button{
+    background-color: #98DAF5; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px; 
+    right: 350px;
+  }
+
   .nav .action-button:hover {
     background-color: #77BFD7; /* slightly darker green on hover */
   }

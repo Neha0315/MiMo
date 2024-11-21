@@ -30,6 +30,10 @@ export class AppComponent
     private apiService: ApiService  // Inject ApiService
   ) {}
 
+  navigateToAddPost() {
+    this.router.navigate(['/add-post']);
+  }
+
   navigateToProfilePage() {
     this.router.navigate(['/profile-page']);
   }

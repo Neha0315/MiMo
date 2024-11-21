@@ -1,0 +1,54 @@
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h1>Post Your Apartment Listing</h1>
+    <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input id="title" formControlName="title" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label for="about">About the Apartment:</label>
+        <textarea id="about" formControlName="about" rows="5"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input id="bedrooms" formControlName="bedrooms" type="number" min="1" />
+      </div>
+  
+      <div class="form-group">
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input id="bathrooms" formControlName="bathrooms" type="number" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input id="address" formControlName="address" type="text" />
+      </div>
+  
+      <div class="form-group">
+        <label for="shared">Is it shared?</label>
+        <select id="shared" formControlName="shared">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" formControlName="price" type="number" min="0" />
+      </div>
+  
+      <div class="form-group">
+        <label for="photos">Upload Photos:</label>
+        <input id="photos" type="file" (change)="onFileChange($event)" />
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" [disabled]="apartmentForm.invalid">Post Listing</button>
+      </div>
+    </form>
+  </div>
