@@ -15,45 +15,58 @@ import { ApiService } from '../services/api.service';
 
 export class ProfilePageComponent implements OnInit 
 {
+  username: string | null = ''; 
+  profile: any = {}; // Profile data
+  loading: boolean = false;
+  error: string | null = null;
   watchlistItems: any[] = [];
 
-  profile: any[] = [];
   title = 'Profile';
-  loading: boolean = false;  
-  error: string | null = null;
 
   constructor(
     private watchlistService: WatchlistService, 
-    private apiService: ApiService) {}
+    private apiService: ApiService) 
+    {
+      this.username = localStorage.getItem('username');
+    }
 
   ngOnInit(): void 
   {  // Make sure to include the return type
     this.watchlistService.watchlistItems$.subscribe(items => {
       this.watchlistItems = items;
     });
+
+    this.loadUserProfile();
   }
 
-  fetchPosts() 
+  loadUserProfile(): void 
   {
-    console.log("fetch button works");
     this.loading = true;
     this.error = null;
-    
-    this.apiService.getPosts(5).subscribe({
-      next: (data) => {
-        this.profile = data;
+
+    this.username = localStorage.getItem('username');
+    if (this.username) {
+        this.apiService.getProfile(this.username).subscribe({
+            next: (data) => {
+                if (data.error) {
+                    this.error = data.error;
+                } else {
+                    this.profile = data;
+                }
+                this.loading = false;
+            },
+            error: (error) => {
+                this.error = 'Failed to load profile. Please try again.';
+                this.loading = false;
+                console.error('Error loading profile:', error);
+            }
+        });
+    } else {
+        this.error = 'Username is not available.';
         this.loading = false;
-        console.log(data);
-      },
-      error: (error) => {
-        this.error = 'Failed to fetch posts: ' + error.message;
-        this.loading = false;
-        console.error('Error fetching posts:', error);
-      }
-    });
+    }
   }
-
-
-
 }
+
+
 
