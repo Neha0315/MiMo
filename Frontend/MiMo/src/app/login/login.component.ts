@@ -22,11 +22,22 @@ export class LoginComponent
     {
       localStorage.setItem('username', this.username);
       
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/profile-page']);
     } 
     else 
     {
       alert('Please enter both username and password');
     }
   }
+
+  navigateToRegister()
+  {
+    this.router.navigate(['/register']);
+  }
+
+  navigateToProfile()
+  {
+    this.router.navigate(['/profile-page']);
+  }
+
 }

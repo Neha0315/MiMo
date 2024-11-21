@@ -1,9 +1,11 @@
 .login-container {
-    width: 300px;
+    width: 450px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 120px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
+    color: black; /* Set input text color */
+    font-size: 14px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   
@@ -30,14 +32,30 @@
   .login-btn {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: #98DAF5;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    color: black; /* Set input text color */
+    font-size: 14px;
   }
   
   .login-btn:hover {
-    background-color: #0056b3;
+    background-color: #77BFD7;
+  }
+
+  .login-container .register-button{
+    background-color: #98DAF5; 
+    padding: 10px;
+    background-color: #98DAF5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black; 
+    font-size: 14px;
+
+    margin-bottom: 20px;
   }
   

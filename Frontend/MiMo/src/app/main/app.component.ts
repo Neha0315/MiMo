@@ -51,7 +51,6 @@ export class AppComponent
     this.router.navigate(['/login']);
   }
 
-
 }
 
 export class MainPageComponent 
