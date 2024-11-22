@@ -22,7 +22,8 @@ export class WatchlistService {
 
   addToWatchlist(item: any) {
     const currentItems = this.watchlistItems.getValue();
-    if (!this.isInWatchlist(item)) {
+    if (!this.isInWatchlist(item)) 
+    {
       const updatedItems = [...currentItems, item];
       this.watchlistItems.next(updatedItems);
       localStorage.setItem('watchlist', JSON.stringify(updatedItems));

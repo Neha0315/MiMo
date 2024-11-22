@@ -9,9 +9,8 @@ from Models.Profile_Model import Profile_Model
 from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from messages import send_msg, get_msg
-from posts import get_post, query_posts, add_post, modify_post, get_pics, upload_image
+from posts import get_post, query_posts, add_post, modify_post
 from profiles import get_profile, create_profile
-import shutil
 
 app = FastAPI()
 conn = sqlite3.connect('SQLite/MiMo.db')
@@ -69,6 +68,10 @@ async def get_prfle(user_id) -> dict[str, object]:
 @app.post('/profile')
 async def make_profile(profile: Profile_Model) -> dict[str, object]:
     return create_profile(conn, profile)
+
+@app.get('/profileByUserID/{user_name}')
+async def get_prfleID(user_name) -> dict[str, object]:
+    return get_profile_id(conn, user_name)
 
 # @app.get('/messages/{user_id}')
 # async def get_messages(user_id):

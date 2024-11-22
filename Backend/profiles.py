@@ -19,6 +19,29 @@ def get_profile(conn, user_name):
             return {"error": "Profile not found"}
     except Exception as e:
         return {"error": str(e)}
+    
+
+def get_profile_id(conn, user_name):
+
+    cursor = conn.cursor()
+    print(f"Querying for user_name: {user_name}")
+    try:
+        # Execute the query
+        cursor.execute("SELECT account_id FROM Accounts WHERE username = ?", (user_name,))
+        row = cursor.fetchone()
+        
+        # Log the result
+        print(f"Database response: {row}")
+
+        # Return the account_id if found
+        if row:
+            return {"account_id": row[0]}
+        else:
+            return {"error": "Profile not found"}
+    except Exception as e:
+        # Log and return any exceptions
+        print(f"Error occurred: {str(e)}")
+        return {"error": str(e)}
 
 def create_profile(conn, profile):
     cursor = conn.cursor()

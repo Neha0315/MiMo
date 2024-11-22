@@ -19,17 +19,18 @@ export class LoginComponent
   login(): void 
   {
     if (this.username && this.password) 
-    {
+      {
       localStorage.setItem('username', this.username);
-      
-      this.router.navigate(['/profile-page']);
-    } 
-    else 
-    {
+  
+      // Instead of navigating directly to profile, you can pass data or force a reload
+      this.router.navigate(['/profile-page']).then(() => {
+        window.location.reload();  // Forces the page to reload, ensuring fresh profile data
+      });
+    } else {
       alert('Please enter both username and password');
     }
   }
-
+  
   navigateToRegister()
   {
     this.router.navigate(['/register']);
