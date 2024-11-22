@@ -73,4 +73,9 @@ export class ApiService
   {
     return this.http.post<any>(`${this.apiUrl}/messages`, messageData);
   }
+
+  uploadImage(imageData: any): Observable<any> 
+  {
+    return this.http.post(`${this.apiUrl}/upload-image`, imageData)
+  }
 }

@@ -9,7 +9,7 @@ from Models.Profile_Model import Profile_Model
 from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from messages import send_msg, get_msg
-from posts import get_post, query_posts, add_post, modify_post, get_pics
+from posts import get_post, query_posts, add_post, modify_post, get_pics, upload_image
 from profiles import get_profile, create_profile
 import shutil
 
@@ -26,13 +26,17 @@ app.add_middleware(
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
-UPLOAD_FOLDER = "./uploads"
-@app.post("/upload-image")
-async def upload_image(file: UploadFile = File(...)):
-    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    return {"file_path": file_path}
+@app.post("/upload-image/{post_id}")
+async def upload_pic(post_id, file: UploadFile = File(...)):
+    upload_image(conn, post_id, file)
+
+
+@app.post("/upload-images/{post_id}")
+async def upload_images(post_id, files: list[UploadFile] = File(...)):
+    saved_files = []
+    for file in files:
+        upload_image(conn, post_id, file)
+    return {"file_paths": "good"}
 
 @app.get('/test')
 async def index() -> dict[str, str]:
