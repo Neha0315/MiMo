@@ -18,24 +18,31 @@ from Models.Message_Model import Message_Model
 #     except:
 #         return {"error": "messages not found"}
 
-def get_msg(conn, reciver, sender):
+def get_msg(conn, receiver, sender):
     cursor = conn.cursor()
-    query = "SELECT * FROM Message WHERE (receiver = ? AND sender = ?) OR (sender = ? AND receiver = ?) ORDER BY message_id DESC"
+    query = """
+    SELECT m.message_id, m.sender, m.msg, m.sent_at, a.username 
+    FROM Message m 
+    INNER JOIN Accounts a ON m.sender = a.account_id 
+    WHERE (m.receiver = ? AND m.sender = ?) OR (m.sender = ? AND m.receiver = ?) 
+    ORDER BY m.message_id DESC
+    """
     try:
-        cursor.execute(query, (reciver, sender, reciver, sender))
+        cursor.execute(query, (receiver, sender, receiver, sender))
         responses = cursor.fetchall()
         return_me = []
         for response in responses:
             return_me.append({
                 "message_id": response[0],
                 "sender_id": response[1],
-                "message": response[3],
-                "message_date": response[4]})
+                "sender_username": response[4], 
+                "message": response[2],
+                "message_date": response[3]
+            })
         return return_me
-    except:
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
         return {"error": "messages not found"}
-
-
 
 def send_msg(conn, msg: Message_Model):
     if msg.sender_id == msg.reciver_id:

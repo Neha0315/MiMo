@@ -66,4 +66,65 @@
     font-size: 14px;
     margin-bottom: 20px;
   }
+
+  /* messages.component.css */
+.messages-container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+}
+
+.user-info {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.get-messages-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #98daf5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.get-messages-btn:hover {
+  background-color: #77bfd7;
+}
+
+.message-list {
+  margin-top: 20px;
+}
+
+.message-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.no-messages {
+  text-align: center;
+  font-style: italic;
+}
   
