@@ -1,3 +1,11 @@
+CREATE TABLE Images (
+    image_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    file_name varchar(128) NOT NULL,
+    post_id INTEGER,
+    photo_number INTEGER,
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id)
+)
+
 CREATE TABLE Accounts (
     account_id INTEGER PRIMARY KEY AUTOINCREMENT,
     email varchar(255) NOT NULL,

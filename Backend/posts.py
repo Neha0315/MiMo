@@ -24,10 +24,22 @@ def get_post(conn, post_id):
     }
     return return_me
 
+def get_pics(conn, post_id):
+    query = "SELECT * FROM Images WHERE post_id = ?"
+    responses = conn.execute(query, (post_id,)).fetchall()
+    return_me = []
+    for response in responses:
+        return_me.append("http://127.0.0.1:8000/uploads/" + response[1])
+    return return_me
+
 
 def query_posts(conn, number_of_posts):
     query = "SELECT * FROM Posts ORDER BY post_date DESC LIMIT ?"
-    responses = conn.execute(query, (number_of_posts,)).fetchall()
+    try:
+        responses = conn.execute(query, (number_of_posts,)).fetchall()
+    except:
+        return "error"
+
     return_me = []
     for response in responses:
         return_me.append({

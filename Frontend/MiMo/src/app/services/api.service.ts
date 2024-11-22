@@ -37,6 +37,11 @@ export class ApiService
     return this.http.post<any>(`${this.apiUrl}/post`, postData);
   }
 
+  getPostImage(postId: string): Observable<any> 
+  {
+    return this.http.get<any>(`${this.apiUrl}/post/images/${postId}`);
+  }
+
   modifyPost(postData: any): Observable<any> 
   {
     return this.http.post<any>(`${this.apiUrl}/post/modify`, postData);

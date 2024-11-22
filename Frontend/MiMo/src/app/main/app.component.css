@@ -93,7 +93,7 @@ header {
     font-size: 16px;
     position: absolute;
     top: 20px; 
-    right: 350px;
+    left: 350px; 
   }
 
   .nav .action-button:hover {
