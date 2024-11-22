@@ -1,8 +1,8 @@
-
+from fastapi.staticfiles import StaticFiles
 import sqlite3
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
 from Models.Message_Model import Message_Model
 from Models.Profile_Model import Profile_Model
 
@@ -10,7 +10,7 @@ from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from messages import send_msg, get_msg
 from posts import get_post, query_posts, add_post, modify_post
-from profiles import get_profile, create_profile, get_profile_id
+from profiles import get_profile, create_profile
 
 app = FastAPI()
 conn = sqlite3.connect('SQLite/MiMo.db')
@@ -23,9 +23,26 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
+@app.post("/upload-image/{post_id}")
+async def upload_pic(post_id, file: UploadFile = File(...)):
+    upload_image(conn, post_id, file)
+
+
+@app.post("/upload-images/{post_id}")
+async def upload_images(post_id, files: list[UploadFile] = File(...)):
+    for file in files:
+        out = upload_image(conn, post_id, file)
+    return out
+
 @app.get('/test')
 async def index() -> dict[str, str]:
     return {'hello': 'world'}
+
+@app.get('/post/images/{post_id}')
+async def get_photos(post_id) -> object:
+    return get_pics(conn, post_id)
 
 @app.get('/post/{post_id}')
 async def get_pst(post_id) -> dict[str, object]:

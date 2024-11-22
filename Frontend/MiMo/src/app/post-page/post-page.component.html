@@ -7,9 +7,15 @@
       <div class="product-address">
         <span>{{post.addr}}</span>
       </div>
-      <div class="product-image">
-        <img src="https://thumbs.dreamstime.com/b/apartment-building-19532951.jpg" alt="Product Image">
+
+      
+      <div class="image-carousel">
+        <button (click)="prevImage()">&#9664;</button> <!-- Left arrow -->
+        <img [src]="images[currentIndex]" alt="Apartment Image">
+        <button (click)="nextImage()">&#9654;</button> <!-- Right arrow -->
       </div>
+
+
       <div class="product-description">
         <p>{{post.about}}</p>
       </div>

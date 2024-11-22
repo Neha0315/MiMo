@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-post',
@@ -11,8 +12,9 @@ import { ApiService } from '../services/api.service';
 })
 export class CreatePostComponent implements OnInit  {
   apartmentForm: FormGroup = new FormGroup({});
+  selectedFiles: File[] = [];
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient) {}
 
   ngOnInit() {
     // Initialize the form
@@ -30,16 +32,10 @@ export class CreatePostComponent implements OnInit  {
 
   onSubmit() {
     if (this.apartmentForm.valid) {
-
       let form_data = this.apartmentForm.value;
-      if(form_data.shared == 'yes') {
-        form_data.shared = 1;
-      } else {
-        form_data.shared = 0;
-      }
+      form_data.shared = form_data.shared === 'yes' ? 1 : 0;
 
-      let send_me = 
-      {
+      let send_me = {
         "poster_id": 0,
         "title": form_data.title,
         "about": form_data.about,
@@ -48,29 +44,36 @@ export class CreatePostComponent implements OnInit  {
         "shared": form_data.shared,
         "addr": form_data.address,
         "listed_price": form_data.price
-      }
+      };
 
       console.log(send_me); // Here is the form data
       this.apiService.createPost(send_me).subscribe(
         (response: any) => {
           console.log(response);
+          let id = response.success;
+          if (this.selectedFiles.length > 0) {
+            const formData = new FormData();
+            this.selectedFiles.forEach(file => {
+              formData.append('files', file);
+            });
+            this.http.post(`http://localhost:8000/upload-images/${id}`, formData).subscribe(response => {
+              console.log('Upload response:', response);
+            });
+          }
         },
         (error: any) => {
           console.log(error);
         }
       );
-
     } else {
       console.log('Form is not valid');
     }
   }
 
   onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.apartmentForm.patchValue({
-        photos: file
-      });
-    }
+    this.selectedFiles = Array.from(event.target.files);
+    this.apartmentForm.patchValue({
+      photos: this.selectedFiles
+    });
   }
 }

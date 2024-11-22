@@ -47,3 +47,20 @@
     font-size: 1em;
     color: #555;
   }
+
+  .image-carousel {
+    display: flex;
+    align-items: center;
+  }
+  
+  .image-carousel img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .image-carousel button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }

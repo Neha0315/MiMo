@@ -1,10 +1,36 @@
 import sqlite3
+import os
+import shutil
+import random
+import string
 
+UPLOAD_FOLDER = "./uploads"
+
+def generate_random_string(length=7):
+    characters = string.ascii_lowercase + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def upload_image(conn, post_id, file):
+    name = file.filename
+    extension = name.split(".")[-1]
+
+    name = post_id + generate_random_string() + "." + extension
+
+    if extension not in ["jpeg", "jpg", "png", "webp", "JPEG", "JPG", "PNG", "WEBP"]:
+        return {"error": "invalid file format"}
+
+    file_path = os.path.join(UPLOAD_FOLDER, name)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    query = "INSERT INTO Images (file_name, post_id) VALUES(?, ?)"
+    conn.execute(query, (name, post_id))
+    conn.commit()
+    return {"file_path": file_path}
 
 def get_post(conn, post_id):
     cursor = conn.cursor()
     query = "SELECT * FROM Posts WHERE post_id = ?"
-    cursor.execute(query, post_id)
+    cursor.execute(query, (post_id,))
     response = cursor.fetchall()
     if len(response) == 0:
         return {"error": "post_id not found"}
@@ -24,10 +50,26 @@ def get_post(conn, post_id):
     }
     return return_me
 
+def get_pics(conn, post_id):
+    query = "SELECT * FROM Images WHERE post_id = ?"
+    responses = conn.execute(query, (post_id,)).fetchall()
+    return_me = []
+    for response in responses:
+        return_me.append("http://127.0.0.1:8000/uploads/" + response[1])
+    return return_me
+
 
 def query_posts(conn, number_of_posts):
-    query = "SELECT * FROM Posts ORDER BY post_date DESC LIMIT ?"
-    responses = conn.execute(query, (number_of_posts,)).fetchall()
+    query = ("SELECT * FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id WHERE image_id IN (SELECT MIN(image_id) FROM images GROUP BY post_id) ORDER BY Posts.post_id DESC LIMIT ?;")
+
+
+
+    #"SELECT DISTINCT Images.post_id, DISTINCT Posts.post_id, poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, est_price, post_date, file_name FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id ORDER BY Posts.post_id DESC LIMIT ?;"
+    try:
+        responses = conn.execute(query, (number_of_posts,)).fetchall()
+    except:
+        return "error"
+
     return_me = []
     for response in responses:
         return_me.append({
@@ -41,7 +83,8 @@ def query_posts(conn, number_of_posts):
             "addr": response[7],
             "listed_price": response[8],
             "est_price": response[9],
-            "post_date": response[10]})
+            "post_date": response[10],
+            "img_url": "http://127.0.0.1:8000/uploads/" + response[12]})
     return return_me
 
 def add_post(conn, post):
@@ -56,7 +99,10 @@ def add_post(conn, post):
         query = "INSERT INTO Posts (poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, post_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,  date('now'));"
         conn.execute(query, (post.poster_id, post.title, post.about, post.bedroom, post.bathroom, s, post.addr, post.listed_price))
         conn.commit()
-        return {"success": "post added"}
+        query = "SELECT * FROM Posts WHERE poster_id = ? AND title = ? AND about = ?"
+        responses = conn.execute(query, (post.poster_id, post.title, post.about)).fetchall()
+        response = responses[0]
+        return {"success": response[0]}
     except Exception as e:
         # Print the error message
         print(f"An error occurred: {e}")

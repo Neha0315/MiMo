@@ -12,6 +12,7 @@ import { ApiService } from '../services/api.service';
 export class PostPageComponent implements OnInit {
   postId: string = '';
   post: any = {};
+  images: string[] = [];
   loading = true;
   error: string | null = null;
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
@@ -24,11 +25,47 @@ export class PostPageComponent implements OnInit {
       }
 
       this.loadPost(this.postId);
-
+      this.loadPostImage(this.postId);
 
     });
   }
 
+  currentIndex: number = 0;
+
+  nextImage() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0; // Loop back to the first image
+    }
+  }
+
+  prevImage() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.images.length - 1; // Loop back to the last image
+    }
+  }
+
+  private loadPostImage(postId: string): void
+  {
+    this.apiService.getPostImage(postId).subscribe({
+      next: (data) => {
+        if (data !== null) {
+          this.images = data;
+        }
+        console.log(data);
+      },
+      error: (error) => {
+        this.error = 'Error loading posts. Please try again later.';
+        this.loading = false;
+        console.error('Error fetching posts:', error);
+      }
+        
+    });
+
+  }
 
   private loadPost(postId: string): void 
   {
