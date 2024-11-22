@@ -48,6 +48,11 @@ export class ApiService
     return this.http.get<any>(`${this.apiUrl}/profile/${userId}`);
   }
 
+  getProfileByID(username: string) : Observable<any>
+  {
+    return this.http.get<any>(`${this.apiUrl}/profileByUserID/${username}`);
+  }
+
   createProfile(profileData: any): Observable<any> 
   {
     return this.http.post<any>(`${this.apiUrl}/profile`, profileData);

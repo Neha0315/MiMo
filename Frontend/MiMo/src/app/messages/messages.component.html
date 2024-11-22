@@ -1,1 +1,35 @@
-<p>messages works!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="message-container">
+    <h2>Send a Message</h2>
+    <form (ngSubmit)="sendMessage()">
+      <div class="form-group">
+        <label for="receiver-username">Receiver Username:</label>
+        <input
+          type="text"
+          id="receiver-username"
+          [(ngModel)]="receiverUsername"
+          name="receiverUsername"
+          placeholder="Enter receiver's username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea
+          id="message"
+          rows="4"
+          [(ngModel)]="messageText"
+          name="messageText"
+          placeholder="Type your message here"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="message-btn">Send</button>
+    </form>
+  </div>

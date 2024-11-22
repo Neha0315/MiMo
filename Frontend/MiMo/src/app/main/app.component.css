@@ -71,6 +71,22 @@ header {
     background-color: #77BFD7; /* slightly darker green on hover */
   }
 
+  .nav .message-button {
+    background-color: #98DAF5; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px; 
+    left: 350px; 
+  }
+
+  .nav .message-button:hover {
+    background-color: #77BFD7; /* slightly darker green on hover */
+  }
+
   .nav .action-button{
     background-color: #98DAF5; 
     padding: 10px 20px;

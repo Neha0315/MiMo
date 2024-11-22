@@ -37,10 +37,6 @@ def get_msg(conn, reciver, sender):
 
 
 
-
-
-
-
 def send_msg(conn, msg: Message_Model):
     if msg.sender_id == msg.reciver_id:
         return {"error": "can't send message to self"}

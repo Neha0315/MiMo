@@ -51,6 +51,11 @@ export class AppComponent
     this.router.navigate(['/login']);
   }
 
+  navigateToMessage()
+  {
+    this.router.navigate(['/message']);
+  }
+
 }
 
 export class MainPageComponent 
