@@ -16,8 +16,7 @@ def upload_image(conn, post_id, file):
 
     name = post_id + generate_random_string() + "." + extension
 
-
-    if extension not in ["jpeg", "jpg", "png", "webp"]:
+    if extension not in ["jpeg", "jpg", "png", "webp", "JPEG", "JPG", "PNG", "WEBP"]:
         return {"error": "invalid file format"}
 
     file_path = os.path.join(UPLOAD_FOLDER, name)
@@ -26,8 +25,6 @@ def upload_image(conn, post_id, file):
     query = "INSERT INTO Images (file_name, post_id) VALUES(?, ?)"
     conn.execute(query, (name, post_id))
     conn.commit()
-
-
     return {"file_path": file_path}
 
 def get_post(conn, post_id):
@@ -63,7 +60,11 @@ def get_pics(conn, post_id):
 
 
 def query_posts(conn, number_of_posts):
-    query = "SELECT * FROM Posts ORDER BY post_id DESC LIMIT ?"
+    query = ("SELECT * FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id WHERE image_id IN (SELECT MIN(image_id) FROM images GROUP BY post_id) ORDER BY Posts.post_id DESC LIMIT ?;")
+
+
+
+    #"SELECT DISTINCT Images.post_id, DISTINCT Posts.post_id, poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, est_price, post_date, file_name FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id ORDER BY Posts.post_id DESC LIMIT ?;"
     try:
         responses = conn.execute(query, (number_of_posts,)).fetchall()
     except:
@@ -82,7 +83,8 @@ def query_posts(conn, number_of_posts):
             "addr": response[7],
             "listed_price": response[8],
             "est_price": response[9],
-            "post_date": response[10]})
+            "post_date": response[10],
+            "img_url": "http://127.0.0.1:8000/uploads/" + response[12]})
     return return_me
 
 def add_post(conn, post):

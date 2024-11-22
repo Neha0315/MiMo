@@ -33,10 +33,9 @@ async def upload_pic(post_id, file: UploadFile = File(...)):
 
 @app.post("/upload-images/{post_id}")
 async def upload_images(post_id, files: list[UploadFile] = File(...)):
-    saved_files = []
     for file in files:
-        upload_image(conn, post_id, file)
-    return {"file_paths": "good"}
+        out = upload_image(conn, post_id, file)
+    return out
 
 @app.get('/test')
 async def index() -> dict[str, str]:
