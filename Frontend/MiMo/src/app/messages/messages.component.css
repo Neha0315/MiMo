@@ -1,0 +1,78 @@
+/* General container styling */
+.messages-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header styling */
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Message list container */
+  .message-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  /* Individual message styling */
+  .message {
+    margin-bottom: 15px;
+  }
+  
+  .message-author {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+  }
+  
+  .message-content {
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #eef2ff;
+    display: inline-block;
+  }
+  
+  /* Input and button container */
+  .message-input-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .send-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3;
+  }
+  

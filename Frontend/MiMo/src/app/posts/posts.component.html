@@ -3,7 +3,9 @@
 <section>
     <!-- <h1 class="page-title">Posts</h1> -->
     <div class="posts-container">
-      <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+      <!-- <button class="post-details-button" (click)="navigateToPostDetails()"> -->
+        <app-listing class="post" *ngFor="let listingInfo of listingInfoList" [listingInfo]="listingInfo"></app-listing>
+      <!-- </button> -->
     </div>
 </section>
 

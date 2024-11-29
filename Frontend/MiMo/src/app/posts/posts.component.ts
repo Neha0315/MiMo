@@ -53,6 +53,17 @@ export class PostsComponent {
   navigateToProfilePage() {
     this.router.navigate(['/profile-page']);
   }
+
+  navigateToPostDetails() {
+    this.router.navigate(['/post-details']);
+  }
+
+  onListingClick(listingInfo: any) {
+    console.log('Listing clicked:', listingInfo);
+    this.router.navigate(['/post-details']);
+  }
+  
+  
 }
 
 

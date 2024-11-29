@@ -32,6 +32,10 @@ export class AppComponent
     this.router.navigate(['/home']);
   }
 
+  navigateToMessages() {
+    this.router.navigate(['/messages']);
+  }
+
 }
 
 export class MainPageComponent {

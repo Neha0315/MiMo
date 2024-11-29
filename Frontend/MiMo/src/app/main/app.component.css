@@ -56,6 +56,21 @@ header {
     background-color: #77BFD7; /* slightly darker green on hover */
   }
 
+  .nav .messages-button {
+    background-color: #98DAF5; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    position: absolute;
+    top: 20px; 
+    left: 250px; 
+  }
+
+  .nav .messages-button:hover {
+    background-color: #77BFD7; /* slightly darker green on hover */
+  }
 
   .nav .logo {
     box-shadow: none;
