@@ -10,7 +10,8 @@ from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from messages import send_msg, get_msg
 from posts import get_post, query_posts, add_post, modify_post
-from profiles import get_profile, create_profile
+from profiles import get_profile, create_profile, get_profile_id
+from watchlist import get_watch_list, add_to_watch_list, remove_from_watch_list
 
 app = FastAPI()
 conn = sqlite3.connect('SQLite/MiMo.db')
@@ -84,6 +85,18 @@ async def get_messages(reciever_id, sender_id):
 @app.post('/messages')
 async def send_message(msg: Message_Model) -> dict[str, object]:
     return send_msg(conn, msg)
+
+@app.post('watchlist/add/{account_id}/{post_id}')
+async def addWatchList(account_id, sender_id):
+    return add_to_watch_list(conn, account_id, sender_id)
+
+@app.post('watchlist/delete/{account_id}/{post_id}')
+async def removeWatchList(account_id, sender_id):
+    return remove_from_watch_list(conn, account_id, sender_id)
+
+@app.get('watchlist/get/{account_id}')
+async def getWatchList(account_id, sender_id):
+    return get_watch_list(conn, account_id)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

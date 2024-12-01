@@ -1,44 +1,92 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Injectable({
-  providedIn: 'root'  // This makes it available throughout the app without app.module.ts
+  providedIn: 'root'
 })
-export class WatchlistService {
-  // Initialize with empty array
-  private watchlistItems = new BehaviorSubject<any[]>([]);
-  
-  // Observable that components can subscribe to
-  public watchlistItems$ = this.watchlistItems.asObservable();
+export class WatchlistService implements OnInit 
+{
+  private watchlistItemsSubject = new BehaviorSubject<any[]>([]);
+  watchlistItems$ = this.watchlistItemsSubject.asObservable();
 
-  constructor() {
-    // Load any saved items when service starts
-    const saved = localStorage.getItem('watchlist');
-    if (saved) {
-      this.watchlistItems.next(JSON.parse(saved));
+  errorMessage: string = '';
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.fetchWatchlist();
+  }
+
+  fetchWatchlist(): void {
+    // Retrieve username from localStorage, ensuring it's a string or null
+    const username = localStorage.getItem('username');
+
+    if (!username) {
+      this.errorMessage = 'No username found. Please log in.';
+      return;
     }
+
+    this.apiService.getProfileByID(username).subscribe(
+      (response) => {
+        const accountId = response.account_id;
+
+        if (!accountId) {
+          this.errorMessage = 'Account ID not found.';
+          return;
+        }
+    
+        this.apiService.getWatchList(accountId).subscribe(
+          (data: any[]) => {
+            this.watchlistItemsSubject.next(data);
+          },
+          (error) => {
+            this.errorMessage = 'Failed to fetch watchlist from the server.';
+            console.error(error);
+          }
+        );
+      },
+      (error) => {
+        this.errorMessage = 'Failed to retrieve profile information.';
+        console.error(error);
+      }
+    );
   }
 
-  addToWatchlist(item: any) {
-    const currentItems = this.watchlistItems.getValue();
-    if (!this.isInWatchlist(item)) 
-    {
-      const updatedItems = [...currentItems, item];
-      this.watchlistItems.next(updatedItems);
-      localStorage.setItem('watchlist', JSON.stringify(updatedItems));
+  removeItem(postId: string): void {
+    const username = localStorage.getItem('username');
+    
+    if (!username) {
+      this.errorMessage = 'No username found. Please log in.';
+      return;
     }
-  }
 
-  removeFromWatchlist(item: any) {
-    const currentItems = this.watchlistItems.getValue();
-    const updatedItems = currentItems.filter(i => i.title !== item.title);
-    this.watchlistItems.next(updatedItems);
-    localStorage.setItem('watchlist', JSON.stringify(updatedItems));
-  }
+    this.apiService.getProfileByID(username).subscribe(
+      (response) => {
+        const accountId = response.account_id;
 
-  isInWatchlist(item: any): boolean {
-    const currentItems = this.watchlistItems.getValue();
-    return currentItems.some(i => i.title === item.title);
+        if (!accountId) {
+          this.errorMessage = 'Account ID not found.';
+          return;
+        }
+
+        this.apiService.removeWatchList(accountId, postId).subscribe(
+          () => {
+            // Refresh the watchlist after removing the item
+            this.fetchWatchlist();
+          },
+          (error) => {
+            this.errorMessage = 'Failed to remove item from watchlist.';
+            console.error(error);
+          }
+        );
+      },
+      (error) => {
+        this.errorMessage = 'Failed to retrieve profile information.';
+        console.error(error);
+      }
+    );
   }
 }

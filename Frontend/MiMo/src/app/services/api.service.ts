@@ -79,8 +79,26 @@ export class ApiService
     return this.http.post<any>(`${this.apiUrl}/messages`, messageData);
   }
 
+  //image upload
   uploadImage(imageData: any): Observable<any> 
   {
     return this.http.post(`${this.apiUrl}/upload-image`, imageData)
   }
+
+  //watchlist
+  getWatchList(userId: string): Observable<any[]> 
+  {
+    return this.http.get<any[]>(`${this.apiUrl}/watchlist/get/${userId}`);
+  } 
+
+  addWatchList(accountId: string, postId: string): Observable<any> 
+  {
+    return this.http.post(`${this.apiUrl}/watchlist/add/${accountId}/${postId}`, {});
+  }
+
+  removeWatchList(accountId: string, postId: string): Observable<any> 
+  {
+    return this.http.post(`${this.apiUrl}/watchlist/remove/${accountId}/${postId}`, {});
+  }
+
 }

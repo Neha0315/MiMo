@@ -47,8 +47,9 @@ export class ProfilePageComponent implements OnInit
       this.watchlistService.watchlistItems$.subscribe(items => {
         this.watchlistItems = items;
       });
+
     }
-    
+  
     
     loadUserProfile(): void 
     {
