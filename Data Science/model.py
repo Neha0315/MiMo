@@ -9,6 +9,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
 
 class RentalScorer:
     def __init__(self):
@@ -56,9 +58,17 @@ class RentalScorer:
         
         print("Training R-squared: ", r2_score(y_train, train_pred))
         print("Testing R-squared: ", r2_score(y_test, test_pred))
-        
-    def predict(self, list_price, sqft, beds, baths, dist_to_campus):
+    
+    
+    def predict(self, list_price, sqft, beds, baths, address):
         price_per_sqft = (list_price * 12) / sqft
+        cwru_address = "11111 Euclid Ave., Cleveland, OH"
+        
+        geolocator = Nominatim(user_agent = "mimo")
+        cor1 = geolocator.geocode(cwru_address)
+        cor2 = geolocator.geocode(address)
+        dist_to_campus = geodesic((cor1.latitude, cor1.longitude), (cor2.latitude, cor2.longitude)).miles
+        
         X = pd.DataFrame([[list_price, sqft, price_per_sqft, beds, baths, dist_to_campus]],
                          columns=['list_price', 'sqft', 'price_per_sqft_ann', 'beds', 'full_baths', 'dist_to_cwru_mi'])
         X_scaled = self.scaler.transform(X)
@@ -69,7 +79,7 @@ class RentalScorer:
 
 if __name__ == "__main__":
     
-    data = pd.read_csv("./RentalsCleanedData.csv")
+    data = pd.read_csv("./ClevelandRentalsPast90Days.csv")
     scorer = RentalScorer()
     prep_data = scorer.process_data(data)
     scorer.train(prep_data)
@@ -79,12 +89,12 @@ if __name__ == "__main__":
         'sqft': 750,
         'beds': 2,
         'full_baths': 2,
-        'dist_to_cwru_mi': 1.5
+        'address': '1681 East 116th St., Cleveland, OH'
         }
     
     score = scorer.predict(new_prop['list_price'],
                            new_prop['sqft'],
                            new_prop['beds'],
                            new_prop['full_baths'],
-                           new_prop['dist_to_cwru_mi'])
+                           new_prop['address'])
     print(f"Deal score for new prop: {score}/5")
