@@ -99,24 +99,24 @@ class RentalScorer:
         return int(round(score))
     
 
-if __name__ == "__main__":
-    
-    data = pd.read_csv("./ClevelandRentalsPast90Days.csv")
+def get_score(prop):
+    data = pd.read_csv("ClevelandRentalsPast90Days.csv")
     scorer = RentalScorer()
     prep_data = scorer.process_data(data)
     scorer.train(prep_data)
     
-    new_prop = {
-        'list_price': 800,
-        'sqft': 750,
-        'beds': 2,
-        'full_baths': 2,
-        'address': '1681 East 116th St., Cleveland, OH'
-        }
+    # new_prop = {
+    #     'list_price': 800,
+    #     'sqft': 750,
+    #     'beds': 2,
+    #     'full_baths': 2,
+    #     'address': '1681 East 116th St., Cleveland, OH'
+    #     }
     
-    score = scorer.predict(new_prop['list_price'],
-                           new_prop['sqft'],
-                           new_prop['beds'],
-                           new_prop['full_baths'],
-                           new_prop['address'])
-    print(f"Deal score for new property: {score}/5")
+    score = scorer.predict(prop['list_price'],
+                           prop['sqft'],
+                           prop['beds'],
+                           prop['full_baths'],
+                           prop['address'])
+    # print(f"Deal score for new property: {score}/5")
+    return score

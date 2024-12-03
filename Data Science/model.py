@@ -79,7 +79,7 @@ class RentalScorer:
 
 if __name__ == "__main__":
     
-    data = pd.read_csv("./ClevelandRentalsPast90Days.csv")
+    data = pd.read_csv("../Backend/ClevelandRentalsPast90Days.csv")
     scorer = RentalScorer()
     prep_data = scorer.process_data(data)
     scorer.train(prep_data)

@@ -9,7 +9,7 @@ from Models.Profile_Model import Profile_Model
 from Models.Posts_Update_Model import Posts_Update_Model
 from Models.Posts_Model import Posts_Model
 from messages import send_msg, get_msg
-from posts import get_post, query_posts, add_post, modify_post
+from posts import get_post, query_posts, add_post, modify_post, upload_image, get_pics
 from profiles import get_profile, create_profile, get_profile_id
 from watchlist import get_watch_list, add_to_watch_list, remove_from_watch_list
 

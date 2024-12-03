@@ -10,3 +10,4 @@ class Posts_Update_Model(BaseModel):
     shared: bool
     addr: str
     listed_price: int
+    sq_ft: int

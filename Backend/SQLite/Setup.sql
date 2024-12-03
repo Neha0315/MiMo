@@ -4,7 +4,7 @@ CREATE TABLE Images (
     post_id INTEGER,
     photo_number INTEGER,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id)
-)
+);
 
 CREATE TABLE Accounts (
     account_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,8 +26,9 @@ CREATE TABLE Posts (
     shared bit,
     addr Varchar(256) NOT NULL,
     listed_price INTEGER NOT NULL,
-    est_price INTEGER,
+    sq_ft INTEGER,
     post_date DATE,
+    score INTEGER,
     FOREIGN KEY (poster_id) REFERENCES Accounts(account_id)
 );
 
