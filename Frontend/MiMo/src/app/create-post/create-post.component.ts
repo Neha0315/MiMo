@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonModule],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })

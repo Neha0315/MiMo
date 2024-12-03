@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ButtonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

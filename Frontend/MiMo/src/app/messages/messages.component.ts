@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service'; // Adjust the path as needed
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   standalone: true,
   selector: 'app-message',
   templateUrl: './messages.component.html',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ButtonModule],
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent 

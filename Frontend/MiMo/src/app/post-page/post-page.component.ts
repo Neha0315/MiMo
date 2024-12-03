@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { ListingInfo } from '../main/listing-info';
+import { ListingComponent } from '../listing/listing.component';
 
 @Component({
   selector: 'app-post-page',
   standalone: true,
-  imports: [],
+  imports: [ListingComponent],
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.css']
 })
 export class PostPageComponent implements OnInit {
+  @Input() listingInfo: any;
+  
   postId: string = '';
   post: any = {};
   images: string[] = [];

@@ -8,11 +8,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
+import { Button, ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PostsComponent, ListingComponent, CommonModule, HttpClientModule],
+  imports: [RouterOutlet, PostsComponent, ListingComponent, CommonModule, HttpClientModule, ButtonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

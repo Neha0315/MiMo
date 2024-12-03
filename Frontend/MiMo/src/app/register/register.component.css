@@ -1,19 +1,33 @@
 .profile-form-container {
-    width: 450px;
-    margin: 0 auto;
-    padding: 120px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    color: black; /* Set input text color */
-    font-size: 14px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
+  width: 450px;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  color: black; /* Set input text color */
+  font-size: 14px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
   
   h2 {
     text-align: center;
+    margin: 0;
     margin-bottom: 20px;
   }
   
+  ::ng-deep .p-button {
+    border: none;
+    border-radius: 5px; 
+    padding: 8px 148px; 
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
   .form-group {
     margin-bottom: 15px;
   }
@@ -34,9 +48,9 @@
   }
   
   input:focus {
-    border-color: #007bff;
+    border-color: #98DAF5;
     outline: none;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 4px #98DAF5;
   }
   
   .submit-btn {

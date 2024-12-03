@@ -4,21 +4,20 @@
     <div>
     </div>
 
-    <div class="nav">
-      <button class="profile-button" (click)="navigateToProfilePage()">
-        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
-      </button>
+    <div class="navbar">
 
       <button class="logo-button" (click)="navigateToHome()">
         <img class="logo" src="/assets/logo.png" alt="logo">
       </button>
 
-      <button class="posts-button" (click)="navigateToPosts()">Posts</button>
-      <button class="add-button" (click)="navigateToAddPost()">Add Post</button>
-      <button class="login-button" (click)="navigateToLogin()">Login</button>
+      <p-button label="Posts"  (click)="navigateToPosts()"></p-button>
+      <p-button label="Login"  (click)="navigateToLogin()"></p-button>
+      <p-button label="Messages"  (click)="navigateToMessage()"></p-button>
+      <p-button label="Add Post"  (click)="navigateToAddPost()"></p-button>
 
-      <button class="message-button" (click)="navigateToMessage()">Messages</button>
-
+      <button class="profile-button" (click)="navigateToProfilePage()">
+        <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+      </button>
     </div>
 
   </header>

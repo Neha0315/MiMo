@@ -1,12 +1,27 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  gap: 20px;
+}
+
 .message-container {
-    width: 450px;
-    margin: 0 auto;
-    padding: 120px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    color: black; /* Set input text color */
-    font-size: 14px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  padding: 20px 50px 30px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  color: black; /* Set input text color */
+  font-size: 14px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  ::ng-deep .p-button {
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
   }
   
   .message-container h2 {
@@ -40,22 +55,7 @@
     font-size: 14px;
     resize: none;
   }
-  
-  .message-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #98DAF5;
-    color: black; /* Set button text color */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .message-btn:hover {
-    background-color: #77BFD7;
-  }
-  
+    
   .message-container .additional-button {
     background-color: #98DAF5;
     padding: 10px;
@@ -69,12 +69,15 @@
 
   /* messages.component.css */
 .messages-container {
-  width: 500px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  padding: 20px 50px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  border-radius: 15px;
+  color: black; /* Set input text color */
+  font-size: 14px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 h2 {
@@ -95,20 +98,6 @@ input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.get-messages-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #98daf5;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.get-messages-btn:hover {
-  background-color: #77bfd7;
 }
 
 .message-list {

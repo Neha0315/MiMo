@@ -1,11 +1,5 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
-<div class="message-container">
+<div class="container">
+  <div class="message-container">
     <h2>Send a Message</h2>
     <form (ngSubmit)="sendMessage()">
       <div class="form-group">
@@ -30,7 +24,7 @@
           required
         ></textarea>
       </div>
-      <button type="submit" class="message-btn">Send</button>
+      <p-button label="Send" styleClass="w-full" type="submit"></p-button>
     </form>
   </div>
 
@@ -50,7 +44,7 @@
     </div>
   
     <!-- Button to get messages -->
-    <button (click)="getMessages()" class="get-messages-btn">Get Messages</button>
+    <p-button label="Get Messages" styleClass="w-full" (click)="getMessages()"></p-button>
   
     <!-- Display messages if available -->
     <div *ngIf="messages.length > 0" class="message-list">
@@ -67,3 +61,5 @@
       <p>No messages to display.</p>
     </div>
   </div>
+
+</div>

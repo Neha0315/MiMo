@@ -1,140 +1,63 @@
 header {
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
-    margin: 0;
-    padding: 30px 20px;
-    background-color: #F4A7B9; 
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  background-color: #F4A7B9; 
+  position: fixed; 
+  top: 0;          
+  left: 0;         
+  width: 100%;   
+  z-index: 1000;   
 
-    position: fixed; /* Fix the header to the viewport */
-    top: 0;          /* Position it at the top */
-    left: 0;         /* Align it to the left edge */
-    width: 100%;     /* Make sure it spans the full width of the screen */
-    z-index: 1000;   /* Ensure it's above other elements */
-    /* background-color: white; Set a background color to make sure content behind it isn't visible */
+  .navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0px 20px 0px 0px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+  }
 
-
-  .nav .profile-pic {
+  .profile-pic {
     width:50px;
     border-radius:50%;
     border:2px solid black;
-    position:absolute;
-    top:15px;
-    right: 50px;
     z-index: 10;
     cursor: pointer;
   }
   
-  .nav .profile-button {
-    background-color: none;
+  .profile-button {
+    background: none;
+    border: none;
     padding: 0;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
   }
 
-  .nav .profile-button:hover {
-    background-color: #77BFD7; /* slightly darker green on hover */
-  }
-
-  .nav .posts-button {
-    background-color: #98DAF5; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    top: 20px; 
-    left: 150px; 
-  }
-
-  .nav .posts-button:hover {
-    background-color: #77BFD7; /* slightly darker green on hover */
-  }
-
-  .nav .login-button {
-    background-color: #98DAF5; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    top: 20px; 
-    left: 250px; 
-  }
-
-  .nav .login-button:hover {
-    background-color: #77BFD7; /* slightly darker green on hover */
-  }
-
-  .nav .message-button {
-    background-color: #98DAF5; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    top: 20px; 
-    left: 350px; 
-  }
-
-  .nav .message-button:hover {
-    background-color: #77BFD7; /* slightly darker green on hover */
-  }
-
-  .nav .action-button{
-    background-color: #98DAF5; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    top: 20px; 
-    right: 150px;
-
-  }
-
-  .nav .add-button{
-    background-color: #98DAF5; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    position: absolute;
-    top: 20px; 
-    left: 350px; 
-  }
-
-  .nav .action-button:hover {
-    background-color: #77BFD7; /* slightly darker green on hover */
-  }
-
-  .nav .logo {
+  .logo {
     box-shadow: none;
     outline: none;
     width: 120px; 
   }
 
-  .nav .logo-button {
+  .logo-button {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    position:absolute;
-    top:-20px;
-    left: -15px;
+
+  }
+
+  p-button {
+    margin: 0 10px; 
   }
   
+  ::ng-deep .p-button {
+    border: none;
+    border-radius: 5px; 
+    padding: 8px 15px; 
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
+  }
 }
   
-
-
- 
-

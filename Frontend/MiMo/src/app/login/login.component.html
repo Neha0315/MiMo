@@ -1,10 +1,3 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
 <div class="login-container">
     <h2>Login</h2>
   
@@ -36,9 +29,11 @@
       </div>
   
       <!-- Submit Button -->
-      <button type="submit" class="login-btn">Login</button>
-    </form>
+      <div class="buttons">
+        <p-button label="Submit" styleClass="w-full" type="submit"></p-button>
 
-    <button class="register-button" (click)="navigateToRegister()">Register</button>
+        <div>Don't have an account yet? <a href="/register">Register</a></div>
+      </div>
+    </form>
   </div>
   
