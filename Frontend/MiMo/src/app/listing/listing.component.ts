@@ -17,15 +17,15 @@ export class ListingComponent implements OnInit {
 
   ngOnInit(): void {  // Make sure to include the return type
     console.log("new listing")
-    this.isInWatchlist = this.watchlistService.isInWatchlist(this.listingInfo);
+    // this.isInWatchlist = this.watchlistService.isInWatchlist(this.listingInfo);
     console.log(this.listingInfo);
   }
 
   toggleWatchlist() {
     if (this.isInWatchlist) {
-      this.watchlistService.removeFromWatchlist(this.listingInfo);
+      // this.watchlistService.removeFromWatchlist(this.listingInfo);
     } else {
-      this.watchlistService.addToWatchlist(this.listingInfo);
+      // this.watchlistService.addToWatchlist(this.listingInfo);
     }
     this.isInWatchlist = !this.isInWatchlist;
   }

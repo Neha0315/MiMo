@@ -9,7 +9,7 @@
     <div class="location-price-container">
         <p class="listing-location">{{ listingInfo.addr }}</p>
         <div class="priceCheck-container">
-            <img class="listing-priceCheck" src="assets\goodPrice.png">
+            <img class="listing-priceCheck" [src]="'assets/' + listingInfo.score + '.png'">
         </div>
     </div>
 </section>

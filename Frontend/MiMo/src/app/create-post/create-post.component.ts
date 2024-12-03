@@ -26,6 +26,7 @@ export class CreatePostComponent implements OnInit  {
       address: ['', Validators.required],
       shared: ['no', Validators.required],
       price: [0, [Validators.required, Validators.min(0)]],
+      squareFootage: [0, [Validators.required, Validators.min(0)]],
       photos: [null] // Can handle file input separately
     });
   }
@@ -43,6 +44,7 @@ export class CreatePostComponent implements OnInit  {
         "bathroom": form_data.bathrooms,
         "shared": form_data.shared,
         "addr": form_data.address,
+        "sq_ft": form_data.squareFootage,
         "listed_price": form_data.price
       };
 

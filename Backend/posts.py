@@ -4,6 +4,8 @@ import shutil
 import random
 import string
 
+# from Backend.model_updated import get_score
+
 UPLOAD_FOLDER = "./uploads"
 
 def generate_random_string(length=7):
@@ -45,7 +47,7 @@ def get_post(conn, post_id):
         "shared": response[0][6],
         "addr": response[0][7],
         "listed_price": response[0][8],
-        "est_price": response[0][9],
+        "sq_ft": response[0][9],
         "post_date": response[0][10]
     }
     return return_me
@@ -61,9 +63,6 @@ def get_pics(conn, post_id):
 
 def query_posts(conn, number_of_posts):
     query = ("SELECT * FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id WHERE image_id IN (SELECT MIN(image_id) FROM images GROUP BY post_id) ORDER BY Posts.post_id DESC LIMIT ?;")
-
-
-
     #"SELECT DISTINCT Images.post_id, DISTINCT Posts.post_id, poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, est_price, post_date, file_name FROM Posts INNER JOIN Images on Images.post_id = Posts.post_id ORDER BY Posts.post_id DESC LIMIT ?;"
     try:
         responses = conn.execute(query, (number_of_posts,)).fetchall()
@@ -82,9 +81,10 @@ def query_posts(conn, number_of_posts):
             "shared": response[6],
             "addr": response[7],
             "listed_price": response[8],
-            "est_price": response[9],
+            "sq_ft": response[9],
             "post_date": response[10],
-            "img_url": "http://127.0.0.1:8000/uploads/" + response[12]})
+            "score": response[11],
+            "img_url": "http://127.0.0.1:8000/uploads/" + response[13]})
     return return_me
 
 def add_post(conn, post):
@@ -95,9 +95,19 @@ def add_post(conn, post):
         s = 0
 
     try:
+        from model_updated import get_score
+        get_score
+        score = get_score({
+            'list_price': post.listed_price,
+            'sqft': post.sq_ft,
+            'beds': post.bedroom,
+            'full_baths': post.bathroom,
+            'address': post.addr
+        })
 
-        query = "INSERT INTO Posts (poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, post_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,  date('now'));"
-        conn.execute(query, (post.poster_id, post.title, post.about, post.bedroom, post.bathroom, s, post.addr, post.listed_price))
+
+        query = "INSERT INTO Posts (poster_id, title, about, bedroom, bathroom, shared, addr, listed_price, post_date, sq_ft, score) VALUES (?, ?, ?, ?, ?, ?, ?, ?,  date('now'), ?, ?);"
+        conn.execute(query, (post.poster_id, post.title, post.about, post.bedroom, post.bathroom, s, post.addr, post.listed_price, post.sq_ft, score))
         conn.commit()
         query = "SELECT * FROM Posts WHERE poster_id = ? AND title = ? AND about = ?"
         responses = conn.execute(query, (post.poster_id, post.title, post.about)).fetchall()
@@ -106,7 +116,6 @@ def add_post(conn, post):
     except Exception as e:
         # Print the error message
         print(f"An error occurred: {e}")
-
         return {"error": "post not added"}
 
 def modify_post(conn, post):
@@ -117,8 +126,8 @@ def modify_post(conn, post):
         s = 0
     try:
         # rewrtie this using a prepared statement
-        query = "UPDATE Posts SET title = ?, about = ?, bedroom = ?, bathroom = ?, shared = ?, addr = ?, listed_price = ? WHERE post_id = ?;"
-        conn.execute(query, (post.title, post.about, post.bedroom, post.bathroom, s, post.addr, post.listed_price, post.post_id))
+        query = "UPDATE Posts SET title = ?, about = ?, bedroom = ?, bathroom = ?, shared = ?, addr = ?, listed_price = ?, sq_ft = ? WHERE post_id = ?;"
+        conn.execute(query, (post.title, post.about, post.bedroom, post.bathroom, s, post.addr, post.listed_price, post.sq_ft, post.post_id))
         conn.commit()
         return {"success": "post modified"}
     except:

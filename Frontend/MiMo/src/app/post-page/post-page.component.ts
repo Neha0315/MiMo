@@ -33,6 +33,7 @@ export class PostPageComponent implements OnInit {
   currentIndex: number = 0;
 
   nextImage() {
+    console.log(this.images);
     if (this.currentIndex < this.images.length - 1) {
       this.currentIndex++;
     } else {

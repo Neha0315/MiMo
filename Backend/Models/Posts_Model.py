@@ -9,4 +9,5 @@ class Posts_Model(BaseModel):
     bathroom: int
     shared: bool
     addr: str
+    sq_ft: int
     listed_price: int
