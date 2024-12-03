@@ -1,0 +1,126 @@
+.product-listing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 80px; 
+    /* max-width: 1000px; */
+  }
+  
+  .product-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    align-items: center;
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px; 
+  }
+  
+  .product-title {
+    font-size: 1.2em;
+  }
+  
+  .product-price {
+    font-size: 1.5em;
+    color: #d9534f;
+  }
+  
+  .subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-address {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 10px; /* Space between address and image */
+  }
+  
+  .priceCheck-container {
+    height: 40px; 
+    overflow: hidden; 
+    position: relative; 
+    /* background-color: #78d5fa; */
+  }
+  
+  .listing-priceCheck {
+    width: 80px; 
+    height: auto; 
+    object-fit: cover; 
+    margin: 0;
+    position: relative;
+    top: -15px;
+    left: 6px;
+    margin: 0;
+  }
+    
+  .product-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+  }
+  
+
+  .info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    gap: 20px;
+    padding: 20px;
+    /* background-color: #a7bbf4; */
+  }
+  
+  .product-description {
+    font-size: 1em;
+    color: #555;
+    background-color: #F4A7B9;
+    width: 80%;
+    min-height: 300px;
+    padding: 20px;
+    border-radius: 50px;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0px;
+    font-size: 0.9em;
+    color: #555;
+    background-color: #F4A7B9;
+    border-radius: 50px;
+    width: 20%;
+    align-items: center;
+    
+  }
+
+  .num-bed, .num-bath, .shared {
+    text-align: center;
+  }
+  
+
+  .image-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-carousel img {
+    max-width: 50%;
+    height: auto;
+  }
+  
+  .image-carousel button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }

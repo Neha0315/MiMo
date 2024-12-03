@@ -3,4 +3,5 @@ export interface ListingInfo {
     location: string;
     title: string;
     price: number;
+    bedrooms: number;
 }

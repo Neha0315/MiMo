@@ -1,0 +1,53 @@
+<div class="product-listing">
+    <div class="product-item">
+      <div class="product-header">
+        <span class="product-title">{{post.title}}</span>
+        <span class="product-price">${{post.listed_price}}</span>
+      </div>
+      <div class="subheader">
+        <div class="product-address">
+          <span>{{post.addr}}</span>
+        </div>
+        <div class="priceCheck-container">
+          <img class="listing-priceCheck" src="assets\price5.png">
+        </div>
+      </div>
+      
+
+      <div class="image-carousel">
+        <button (click)="prevImage()">&#9664;</button> <!-- Left arrow -->
+        <!-- <img  src="assets\price5.png"> -->
+        <img [src]="images[currentIndex]" alt="Apartment Image">
+        <button (click)="nextImage()">&#9654;</button> <!-- Right arrow -->
+      </div>
+
+      <div class="info-container">
+          
+        <div class="product-description">
+          <h3>Description</h3>
+          <p>{{post.about}}</p>
+        </div>
+
+        <div class="details">
+          <div class="num-bed">
+            <h3>Bedrooms</h3> 
+            <p>{{post.bedroom}}</p>
+          </div>
+
+          <div class="num-bath">
+            <h3>Bathrooms</h3> 
+            <p>{{post.bathroom}}</p>
+          </div>
+
+          <div class="shared">
+            <h3>Shared?</h3>         
+            <p>{{post.shared}}</p>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+    <!-- Repeat .product-item for more listings -->
+  </div>

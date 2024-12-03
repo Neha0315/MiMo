@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div class="messages-container">
     <h1>Messages</h1>
   
@@ -22,3 +23,71 @@
     </div>
   </div>
   
+=======
+
+<div class="container">
+  <div class="message-container">
+      <h2>Send a Message</h2>
+      <form (ngSubmit)="sendMessage()">
+        <div class="form-group">
+          <label for="receiver-username">Receiver Username:</label>
+          <input
+            type="text"
+            id="receiver-username"
+            [(ngModel)]="receiverUsername"
+            name="receiverUsername"
+            placeholder="Enter receiver's username"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea
+            id="message"
+            rows="4"
+            [(ngModel)]="messageText"
+            name="messageText"
+            placeholder="Type your message here"
+            required
+          ></textarea>
+        </div>
+        <p-button label="Send" styleClass="w-full" type="submit"></p-button>
+
+      </form>
+    </div>
+
+    <!-- messages.component.html -->
+  <div class="messages-container">
+      <h2>My Messages</h2>
+    
+      <!-- Display user information (sender's username) -->
+      <div class="user-info">
+        <label for="receiver">Receiver Username:</label>
+        <input
+          type="text"
+          id="receiver"
+          [(ngModel)]="receiverUsername"
+          placeholder="Enter receiver's username"
+        />
+      </div>
+    
+      <!-- Button to get messages -->
+      <p-button label="Get Messages" styleClass="w-full" (click)="getMessages()"></p-button>
+
+      <!-- Display messages if available -->
+      <div *ngIf="messages.length > 0" class="message-list">
+        <div *ngFor="let message of messages" class="message-item">
+          <p><strong>Sender:</strong> {{ message.sender_username}}</p>
+          <p><strong>Message:</strong> {{ message.message }}</p>
+          <p><strong>Sent at:</strong> {{ message.message_date }}</p>
+          <hr />
+        </div>
+      </div>
+    
+      <!-- Display no messages message -->
+      <div *ngIf="messages.length === 0" class="no-messages">
+        <p>No messages to display.</p>
+      </div>
+    </div>
+  </div>
+>>>>>>> Stashed changes

@@ -4,6 +4,7 @@
     <div>
     </div>
 
+<<<<<<< Updated upstream
     <div class="nav">
       <button class="profile-button" (click)="navigateToProfilePage()">
         <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
@@ -17,6 +18,22 @@
       <button class="messages-button" (click)="navigateToMessages()">Messages</button>
 
     </div>
+=======
+      <nav class="navbar">
+        <button class="logo-button" (click)="navigateToHome()">
+          <img class="logo" src="/assets/logo.png" alt="logo">
+        </button>
+  
+        <p-button label="Posts"  (click)="navigateToPosts()"></p-button>
+        <p-button label="Login"  (click)="navigateToLogin()"></p-button>
+        <p-button label="Messages"  (click)="navigateToMessage()"></p-button>
+        <p-button label="Add Post"  (click)="navigateToAddPost()"></p-button>
+>>>>>>> Stashed changes
 
+        <button class="profile-button" (click)="navigateToProfilePage()">
+          <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
+        </button>
+      </nav>
+  
   </header>
   <router-outlet></router-outlet>

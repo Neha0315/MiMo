@@ -5,6 +5,8 @@ import { PostsComponent } from '../posts/posts.component';
 import {ProfilePageComponent} from '../profile-page/profile-page.component';
 import {HomeComponent} from '../home/home.component';
 import { MessagesComponent } from '../messages/messages.component';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const routes: Routes = [  
     { path: '', redirectTo: '/home', pathMatch: 'full' },  // Default route to Home page
@@ -17,7 +19,17 @@ export const routes: Routes = [
   ];
   
   @NgModule({
+<<<<<<< Updated upstream
     imports: [RouterModule.forRoot(routes)],
+=======
+
+    imports: [
+      RouterModule.forRoot(routes), 
+      FormsModule,
+      ButtonModule,
+      BrowserAnimationsModule
+    ],
+>>>>>>> Stashed changes
     exports: [RouterModule]
   })
   
