@@ -1,2 +1,5 @@
 /Backend/.venv
 /Backend/.env
+/Backend/my_env
+/Backend/.my_env
+/Backend/__pycache__
