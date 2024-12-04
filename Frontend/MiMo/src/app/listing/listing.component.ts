@@ -21,7 +21,9 @@ export class ListingComponent implements OnInit {
     console.log(this.listingInfo);
   }
 
-  toggleWatchlist() {
+  toggleWatchlist(event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
     if (this.isInWatchlist) {
       // this.watchlistService.removeFromWatchlist(this.listingInfo);
     } else {
