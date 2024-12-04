@@ -48,7 +48,8 @@ def get_post(conn, post_id):
         "addr": response[0][7],
         "listed_price": response[0][8],
         "sq_ft": response[0][9],
-        "post_date": response[0][10]
+        "post_date": response[0][10],
+        "score" : response[0][11]
     }
     return return_me
 
