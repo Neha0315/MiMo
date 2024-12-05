@@ -4,12 +4,13 @@ import { WatchlistService } from '../services/watchlist.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
 import { ListingService } from '../services/listing.service';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.css'
 })
