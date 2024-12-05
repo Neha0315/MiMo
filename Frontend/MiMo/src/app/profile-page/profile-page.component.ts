@@ -32,24 +32,16 @@ export class ProfilePageComponent implements OnInit
 
     ngOnInit(): void 
     {
-      // Ensure the profile is loaded on init with the updated username
       this.username = localStorage.getItem('username');
       if (this.username) 
       {
-        this.loadUserProfile();  // Load the profile data for the updated username
+        this.loadUserProfile();
+        this.loadWatchlist();
       } 
-      else 
-      {
+      else {
         this.error = 'Username not available';
       }
-    
-      // Subscribe to watchlist items
-      this.watchlistService.watchlistItems$.subscribe(items => {
-        this.watchlistItems = items;
-      });
-
     }
-  
     
     loadUserProfile(): void 
     {
@@ -81,6 +73,19 @@ export class ProfilePageComponent implements OnInit
         this.error = 'Username is not available.';
         this.loading = false;
       }
+    }
+
+    loadWatchlist(): void 
+    {
+      this.watchlistService.watchlistItems$.subscribe({
+        next: (items) => {
+          this.watchlistItems = items;
+        },
+        error: (error) => {
+          console.error('Failed to load watchlist:', error);
+          this.error = 'Failed to load watchlist.';
+        }
+      });
     }
    
 }

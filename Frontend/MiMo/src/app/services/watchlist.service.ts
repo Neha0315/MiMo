@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -103,6 +102,13 @@ export class WatchlistService implements OnInit
   
     if (!username) {
       this.errorMessage = 'No username found. Please log in.';
+      return;
+    }
+  
+    // Check if the postId already exists in the watchlist
+    if (this.isInWatchlist(postId)) 
+      {
+      this.errorMessage = 'Item is already in the watchlist.';
       return;
     }
   

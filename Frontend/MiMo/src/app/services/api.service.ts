@@ -98,7 +98,7 @@ export class ApiService
 
   removeWatchList(accountId: string, postId: string): Observable<any> 
   {
-    return this.http.get(`${this.apiUrl}/watchlist/remove/${accountId}/${postId}`);
+    return this.http.delete(`${this.apiUrl}/watchlist/remove/${accountId}/${postId}`);
   }
 
 }

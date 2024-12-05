@@ -90,7 +90,7 @@ async def send_message(msg: Message_Model) -> dict[str, object]:
 async def addWatchList(account_id, post_id):
     return add_to_watch_list(conn, account_id, post_id)
 
-@app.get('/watchlist/delete/{account_id}/{post_id}')
+@app.delete('/watchlist/delete/{account_id}/{post_id}')
 async def removeWatchList(account_id, post_id):
     return remove_from_watch_list(conn, account_id, post_id)
 
