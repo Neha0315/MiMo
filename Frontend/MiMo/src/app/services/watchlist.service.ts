@@ -107,7 +107,7 @@ export class WatchlistService implements OnInit
   
     // Check if the postId already exists in the watchlist
     if (this.isInWatchlist(postId)) 
-      {
+    {
       this.errorMessage = 'Item is already in the watchlist.';
       return;
     }
