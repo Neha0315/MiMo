@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
+//import { ProfilePageComponent } from '../profile-page/profile-page.component';
+import { ListingService } from '../services/listing.service';
+
 
 @Component({
   selector: 'app-create-post',
@@ -12,10 +16,11 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './create-post.component.css'
 })
 export class CreatePostComponent implements OnInit  {
+
   apartmentForm: FormGroup = new FormGroup({});
   selectedFiles: File[] = [];
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient, private listingService: ListingService ) {}
 
   ngOnInit() {
     // Initialize the form
@@ -54,6 +59,10 @@ export class CreatePostComponent implements OnInit  {
         (response: any) => {
           console.log(response);
           let id = response.success;
+
+          const newListing = { title: form_data.title, poster_id: response.poster_id };
+          this.listingService.addListing(newListing);
+
           if (this.selectedFiles.length > 0) {
             const formData = new FormData();
             this.selectedFiles.forEach(file => {

@@ -18,8 +18,8 @@
     <div class="listing">
       <h3>Your Listings</h3>
       <ul>
-        <li *ngFor="let item of profile.listings">
-          {{ item.title }} - {{ item.location }}
+        <li *ngFor="let listing of listings">
+          {{ listing.title }} - Poster ID: {{ listing.poster_id }}
         </li>
       </ul>
     </div>

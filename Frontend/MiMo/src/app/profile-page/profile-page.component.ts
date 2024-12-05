@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WatchlistService } from '../services/watchlist.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
+import { ListingService } from '../services/listing.service';
 
 
 @Component({
@@ -20,12 +21,14 @@ export class ProfilePageComponent implements OnInit
   loading: boolean = false;
   error: string | null = null;
   watchlistItems: any[] = [];
+  listings: any[] = [];
 
   title = 'Profile';
 
   constructor(
     private watchlistService: WatchlistService, 
-    private apiService: ApiService) 
+    private apiService: ApiService, 
+    private listingService: ListingService) 
     {
       this.username = localStorage.getItem('username');
     }
@@ -41,6 +44,10 @@ export class ProfilePageComponent implements OnInit
       else {
         this.error = 'Username not available';
       }
+
+      this.listingService.listings$.subscribe((listings) => {
+        this.listings = listings;
+      });
     }
     
     loadUserProfile(): void 
@@ -86,6 +93,10 @@ export class ProfilePageComponent implements OnInit
           this.error = 'Failed to load watchlist.';
         }
       });
+    }
+
+    addListingToProfile(newListing: any) {
+      this.profile.listings.push(newListing);
     }
    
 }
