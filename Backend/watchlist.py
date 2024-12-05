@@ -1,14 +1,22 @@
 def get_watch_list(conn, account_id):
     cursor = conn.cursor()
     query = """
-    SELECT post_id 
+    SELECT Watch_List.post_id, title 
     FROM Watch_List 
-    WHERE account_id = ?;
+    JOIN Posts ON Watch_List.post_id = Posts.post_id
+    WHERE account_id = ?;   
     """
     try:
         cursor.execute(query, (account_id,))
         results = cursor.fetchall()
-        return {"success": True, "watchlist": [row[0] for row in results]}
+        return_me = []
+
+        for response in results:
+            return_me.append({
+            "post_id": response[0],
+            "title" : response[1]
+            })
+        return return_me
     except Exception as e:
         return {"success": False, "error": f"Failed to fetch watch list: {str(e)}"}
 

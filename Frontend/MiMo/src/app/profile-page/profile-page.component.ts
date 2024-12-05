@@ -82,7 +82,7 @@ export class ProfilePageComponent implements OnInit
         this.loading = false;
       }
     }
-    
+   
 }
 
 

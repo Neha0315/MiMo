@@ -86,16 +86,16 @@ async def get_messages(reciever_id, sender_id):
 async def send_message(msg: Message_Model) -> dict[str, object]:
     return send_msg(conn, msg)
 
-@app.post('watchlist/add/{account_id}/{post_id}')
-async def addWatchList(account_id, sender_id):
-    return add_to_watch_list(conn, account_id, sender_id)
+@app.get('/watchlist/add/{account_id}/{post_id}')
+async def addWatchList(account_id, post_id):
+    return add_to_watch_list(conn, account_id, post_id)
 
-@app.post('watchlist/delete/{account_id}/{post_id}')
-async def removeWatchList(account_id, sender_id):
-    return remove_from_watch_list(conn, account_id, sender_id)
+@app.get('/watchlist/delete/{account_id}/{post_id}')
+async def removeWatchList(account_id, post_id):
+    return remove_from_watch_list(conn, account_id, post_id)
 
-@app.get('watchlist/get/{account_id}')
-async def getWatchList(account_id, sender_id):
+@app.get('/watchlist/get/{account_id}')
+async def getWatchList(account_id):
     return get_watch_list(conn, account_id)
 
 if __name__ == '__main__':

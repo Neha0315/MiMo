@@ -126,3 +126,26 @@
   font-size: 2rem;
   cursor: pointer;
 }
+
+.heart-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.heart-icon {
+  width: 24px;
+  height: 24px;
+  fill: #ccc; /* Default gray color */
+  transition: fill 0.3s ease; /* Smooth color change */
+}
+
+.heart-button.active .heart-icon {
+  fill: red; /* Active state (selected) */
+}

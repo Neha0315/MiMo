@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { ListingInfo } from '../main/listing-info';
 import { ListingComponent } from '../listing/listing.component';
+import { WatchlistService } from '../services/watchlist.service';
 
 @Component({
   selector: 'app-post-page',
@@ -11,7 +12,8 @@ import { ListingComponent } from '../listing/listing.component';
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.css']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit 
+{
   @Input() listingInfo: any;
   
   postId: string = '';
@@ -19,7 +21,9 @@ export class PostPageComponent implements OnInit {
   images: string[] = [];
   loading = true;
   error: string | null = null;
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  isInWatchlist: boolean = false;
+
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private watchlistService: WatchlistService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -30,6 +34,8 @@ export class PostPageComponent implements OnInit {
 
       this.loadPost(this.postId);
       this.loadPostImage(this.postId);
+
+      this.isInWatchlist = this.watchlistService.isInWatchlist(this.post.id);
 
     });
   }
@@ -88,6 +94,20 @@ export class PostPageComponent implements OnInit {
         
     });
 
+  }
+
+  toggleWatchlist(event: MouseEvent): void 
+  {
+    event.stopPropagation(); // Prevent parent click handlers
+  
+    if (this.isInWatchlist) {
+      this.watchlistService.removeItem(this.postId);
+    } else {
+      this.watchlistService.addItem(this.postId);
+    }
+  
+    // Toggle the button's visual state
+    this.isInWatchlist = !this.isInWatchlist;
   }
 
 

@@ -9,26 +9,17 @@ import { ListingInfo } from '../main/listing-info';
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.css'
 })
-export class ListingComponent implements OnInit {
+export class ListingComponent implements OnInit 
+{
   @Input() listingInfo: any;
   isInWatchlist: boolean = false;
 
   constructor(private watchlistService: WatchlistService) {}
 
-  ngOnInit(): void {  // Make sure to include the return type
+  ngOnInit(): void 
+  {  // Make sure to include the return type
     console.log("new listing")
     // this.isInWatchlist = this.watchlistService.isInWatchlist(this.listingInfo);
     console.log(this.listingInfo);
-  }
-
-  toggleWatchlist(event: Event) {
-    event.stopPropagation();
-    event.preventDefault();
-    if (this.isInWatchlist) {
-      // this.watchlistService.removeFromWatchlist(this.listingInfo);
-    } else {
-      // this.watchlistService.addToWatchlist(this.listingInfo);
-    }
-    this.isInWatchlist = !this.isInWatchlist;
   }
 }

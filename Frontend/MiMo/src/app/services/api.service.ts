@@ -93,12 +93,12 @@ export class ApiService
 
   addWatchList(accountId: string, postId: string): Observable<any> 
   {
-    return this.http.post(`${this.apiUrl}/watchlist/add/${accountId}/${postId}`, {});
+    return this.http.get(`${this.apiUrl}/watchlist/add/${accountId}/${postId}`);
   }
 
   removeWatchList(accountId: string, postId: string): Observable<any> 
   {
-    return this.http.post(`${this.apiUrl}/watchlist/remove/${accountId}/${postId}`, {});
+    return this.http.get(`${this.apiUrl}/watchlist/remove/${accountId}/${postId}`);
   }
 
 }

@@ -20,6 +20,14 @@ export class WatchlistService implements OnInit
     this.fetchWatchlist();
   }
 
+  get currentWatchlist(): string[] {
+    return this.watchlistItemsSubject.value;
+  }
+
+  isInWatchlist(postId: string): boolean {
+    return this.currentWatchlist.includes(postId);
+  }
+
   fetchWatchlist(): void {
     // Retrieve username from localStorage, ensuring it's a string or null
     const username = localStorage.getItem('username');
@@ -89,4 +97,40 @@ export class WatchlistService implements OnInit
       }
     );
   }
+
+  addItem(postId: string): void {
+    const username = localStorage.getItem('username');
+  
+    if (!username) {
+      this.errorMessage = 'No username found. Please log in.';
+      return;
+    }
+  
+    this.apiService.getProfileByID(username).subscribe(
+      (response) => {
+        const accountId = response.account_id;
+  
+        if (!accountId) {
+          this.errorMessage = 'Account ID not found.';
+          return;
+        }
+  
+        this.apiService.addWatchList(accountId, postId).subscribe(
+          () => {
+            // Refresh the watchlist after adding the item
+            this.fetchWatchlist();
+          },
+          (error) => {
+            this.errorMessage = 'Failed to add item to watchlist.';
+            console.error(error);
+          }
+        );
+      },
+      (error) => {
+        this.errorMessage = 'Failed to retrieve profile information.';
+        console.error(error);
+      }
+    );
+  }
+  
 }
