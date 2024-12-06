@@ -14,7 +14,8 @@ from profiles import get_profile, create_profile, get_profile_id
 from watchlist import get_watch_list, add_to_watch_list, remove_from_watch_list
 
 app = FastAPI()
-conn = sqlite3.connect('SQLite/MiMo.db')
+#conn = sqlite3.connect('SQLite/MiMo.db')
+conn = sqlite3.connect('SQLite/MiMo.db', check_same_thread=False)
 
 app.add_middleware(
     CORSMiddleware,
