@@ -67,6 +67,7 @@ export class ProfilePageComponent implements OnInit
             } 
             else 
             {
+              console.log('Profile data:', data);
               this.profile = data;
             }
             this.loading = false;
@@ -87,6 +88,7 @@ export class ProfilePageComponent implements OnInit
     {
       this.watchlistService.watchlistItems$.subscribe({
         next: (items) => {
+          console.log('Watchlist items:', items);
           this.watchlistItems = items;
         },
         error: (error) => {

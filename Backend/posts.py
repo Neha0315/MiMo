@@ -31,7 +31,7 @@ def upload_image(conn, post_id, file):
 
 def get_post(conn, post_id):
     cursor = conn.cursor()
-    query = "SELECT * FROM Posts WHERE post_id = ?"
+    query = "SELECT * FROM Posts INNER JOIN Accounts ON Posts.poster_id = Accounts.account_id WHERE post_id = ?;"
     cursor.execute(query, (post_id,))
     response = cursor.fetchall()
     if len(response) == 0:
@@ -49,7 +49,8 @@ def get_post(conn, post_id):
         "listed_price": response[0][8],
         "sq_ft": response[0][9],
         "post_date": response[0][10],
-        "score" : response[0][11]
+        "score" : response[0][11],
+        "poster_name": response[0][16]
     }
     return return_me
 

@@ -43,7 +43,7 @@ export class CreatePostComponent implements OnInit  {
       form_data.shared = form_data.shared === 'yes' ? 1 : 0;
 
       let send_me = {
-        "poster_id": 0,
+        "poster_id": 5,
         "title": form_data.title,
         "about": form_data.about,
         "bedroom": form_data.bedrooms,

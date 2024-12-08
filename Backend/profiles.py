@@ -2,7 +2,7 @@ def get_profile(conn, user_name):
     cursor = conn.cursor()
     print(f"Querying for user_name: {user_name}") 
     try:
-        cursor.execute("SELECT * FROM Accounts WHERE username = ?", (user_name,))
+        cursor.execute("SELECT * FROM Accounts LEFT JOIN Posts ON account_id = poster_id WHERE username = ? ", (user_name,))
         row = cursor.fetchone()
         print(f"Database response: {row}")
         if row:
@@ -14,6 +14,7 @@ def get_profile(conn, user_name):
                 "username": row[4],
                 "pwd": row[5],
                 "creation_date": row[6],
+                "listings": [{"post_id":row[7], "title":row[9]}]
             }
         else:
             return {"error": "Profile not found"}
