@@ -11,11 +11,14 @@
       </button>
 
       <p-button label="Posts"  (click)="navigateToPosts()"></p-button>
-      <p-button label="Login"  (click)="navigateToLogin()"></p-button>
-      <p-button label="Messages"  (click)="navigateToMessage()"></p-button>
-      <p-button label="Add Post"  (click)="navigateToAddPost()"></p-button>
+      <p-button label="Login"  (click)="navigateToLogin()" *ngIf="!isLogin()"></p-button>
 
-      <button class="profile-button" (click)="navigateToProfilePage()">
+      <p-button label="Logout"  (click)="logout()" *ngIf="isLogin()"></p-button>
+
+      <p-button label="Messages"  (click)="navigateToMessage()" *ngIf="isLogin()"></p-button>
+      <p-button label="Add Post" *ngIf="isLogin()"  (click)="navigateToAddPost()"></p-button>
+
+      <button class="profile-button" (click)="navigateToProfilePage()" *ngIf="isLogin()" >
         <img class="profile-pic" src="/assets/profile-pic.png" alt="profile" aria-hidden="true">
       </button>
     </div>

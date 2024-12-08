@@ -57,6 +57,15 @@ export class AppComponent
     this.router.navigate(['/message']);
   }
 
+  isLogin(): boolean {
+    return localStorage.getItem('username') !== null;
+  }
+
+  logout() {
+    localStorage.removeItem('username');
+    this.router.navigate(['/login']);
+  }
+
 }
 
 export class MainPageComponent 
